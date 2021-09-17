@@ -1,6 +1,6 @@
 package com.example.proyectodw.controller;
 
-import com.example.proyectodw.model.PlanetaRepository;
+import com.example.proyectodw.DAO.PlanetaRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

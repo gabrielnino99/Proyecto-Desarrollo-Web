@@ -1,6 +1,6 @@
 package com.example.proyectodw.controller;
 
-import com.example.proyectodw.model.AgujeroDeGusanoRepository;
+import com.example.proyectodw.DAO.AgujeroDeGusanoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

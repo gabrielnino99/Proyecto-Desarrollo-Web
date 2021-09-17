@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Usuario{
     @Id
     @GeneratedValue
-    int ID;
+    Long ID;
     String userName;
     String password;
     String rol;
@@ -38,11 +38,11 @@ public class Usuario{
         this.nave = nave;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
