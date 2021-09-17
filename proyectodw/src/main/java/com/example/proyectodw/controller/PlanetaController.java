@@ -2,7 +2,7 @@ package com.example.proyectodw.controller;
 
 import java.util.List;
 
-import com.example.proyectodw.DAO.PlanetaRepository;
+//import com.example.proyectodw.DAO.PlanetaRepository;
 import com.example.proyectodw.model.Planeta;
 import com.example.proyectodw.services.PlanetaService;
 

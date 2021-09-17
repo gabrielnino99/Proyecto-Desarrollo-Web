@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Nave{
     @Id
     @GeneratedValue
-    int ID;
+    Long ID;
     String nombre;
     int carga;
     int velocidad;
@@ -32,11 +32,11 @@ public class Nave{
         this.estrella = estrella;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 

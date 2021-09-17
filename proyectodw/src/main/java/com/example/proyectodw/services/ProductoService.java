@@ -32,21 +32,21 @@ public class ProductoService {
 
     public Producto updateProducto(Producto producto) {
         Optional<Producto> productoOpcional = productoRepository.findById(producto.getID());
-        Producto productoExistente = null;
+        Producto productoEncontrado = null;
         if (productoOpcional.isPresent()) {
 
-            productoExistente = productoOpcional.get();
-            productoExistente.setNombre(producto.getNombre());
-            productoExistente.setFactorDemanda(producto.getFactorDemanda());
-            productoExistente.setStock(producto.getStock());
-            productoExistente.setFactorOferta(producto.getFactorOferta());
-            productoExistente.setColumn(producto.getColumn());
+            productoEncontrado = productoOpcional.get();
+            productoEncontrado.setNombre(producto.getNombre());
+            productoEncontrado.setFactorDemanda(producto.getFactorDemanda());
+            productoEncontrado.setStock(producto.getStock());
+            productoEncontrado.setFactorOferta(producto.getFactorOferta());
+            productoEncontrado.setColumn(producto.getColumn());
 
-            productoRepository.save(productoExistente);
+            productoRepository.save(productoEncontrado);
         } else {
             return new Producto();
         }
-        return productoExistente;
+        return productoEncontrado;
     }
 
     public String deleteProductoById(Long id){
