@@ -9,16 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Producto{
+public class Producto {
     @Id
     @GeneratedValue
-    int ID;
+    Long ID;
     String nombre;
     int factorDemanda;
     int stock;
     int factorOferta;
     int column;
-    @ManyToMany(mappedBy="productos")
+    @ManyToMany(mappedBy = "productos")
     List<Planeta> planetas = new ArrayList<>();
 
     public Producto() {
@@ -32,11 +32,11 @@ public class Producto{
         this.column = column;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -88,7 +88,4 @@ public class Producto{
         this.planetas = planetas;
     }
 
-    
-
 }
-

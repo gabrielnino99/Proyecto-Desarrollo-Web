@@ -43,6 +43,7 @@ public class UsuarioService {
             usuarioExistente.setNave(usuario.getNave());
             usuarioExistente.setCredito(usuario.getCredito());
             usuarioExistente.setTiempoDeJuego(usuario.getTiempoDeJuego());
+            
             usuarioRepository.save(usuarioExistente);
         } else {
             return new Usuario();
