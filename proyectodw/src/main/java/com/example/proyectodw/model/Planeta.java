@@ -10,10 +10,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Planeta{
+public class Planeta {
     @Id
     @GeneratedValue
-    int ID;
+    Long ID;
     String nombre;
     @ManyToOne
     Estrella estrella;
@@ -28,11 +28,11 @@ public class Planeta{
         this.estrella = estrella;
     }
 
-    public int getID() {
+    public Long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(Long ID) {
         this.ID = ID;
     }
 
@@ -59,7 +59,5 @@ public class Planeta{
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
-
-    
 
 }

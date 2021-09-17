@@ -32,23 +32,23 @@ public class UsuarioService {
 
     public Usuario updateUsuario(Usuario usuario) {
         Optional<Usuario> usuarioOpcional = usuarioRepository.findById(usuario.getID());
-        Usuario usuarioExistente = null;
+        Usuario usuarioEncontrado = null;
         if (usuarioOpcional.isPresent()) {
 
-            usuarioExistente = usuarioOpcional.get();
-            usuarioExistente.setUserName(usuario.getUserName());
-            usuarioExistente.setEmail(usuario.getEmail());
-            usuarioExistente.setPassword(usuario.getPassword()); // No se si incluir acá:
-            usuarioExistente.setRol(usuario.getRol()); // Credito, Transacciones, Rol, Tiempo
-            usuarioExistente.setNave(usuario.getNave());
-            usuarioExistente.setCredito(usuario.getCredito());
-            usuarioExistente.setTiempoDeJuego(usuario.getTiempoDeJuego());
+            usuarioEncontrado = usuarioOpcional.get();
+            usuarioEncontrado.setUserName(usuario.getUserName());
+            usuarioEncontrado.setEmail(usuario.getEmail());
+            usuarioEncontrado.setPassword(usuario.getPassword()); // No se si incluir acá:
+            usuarioEncontrado.setRol(usuario.getRol()); // Credito, Transacciones, Rol, Tiempo
+            usuarioEncontrado.setNave(usuario.getNave());
+            usuarioEncontrado.setCredito(usuario.getCredito());
+            usuarioEncontrado.setTiempoDeJuego(usuario.getTiempoDeJuego());
             
-            usuarioRepository.save(usuarioExistente);
+            usuarioRepository.save(usuarioEncontrado);
         } else {
             return new Usuario();
         }
-        return usuarioExistente;
+        return usuarioEncontrado;
     }
 
     public String deleteUsuarioById(Long id){
