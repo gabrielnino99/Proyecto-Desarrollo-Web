@@ -13,37 +13,40 @@ import javax.persistence.OneToMany;
 public class Estrella{
     @Id
     @GeneratedValue
-    int ID;
+    long ID;
     String nombre;
     int coordenadaX;
     int coordneadaY;
     int coordenadaZ;
-    int column;
+    int eid;
     @ManyToMany
-    List<AgujeroDeGusano> agujerosDeGusano = new ArrayList<>();
+    List<AgujeroDeGusano> agujerosDeGusano;
     @OneToMany(mappedBy="estrella")
-    List<Nave> naves = new ArrayList<>();
+    List<Nave> naves;
     @OneToMany(mappedBy="estrella")
-    List<Planeta> planetas =  new ArrayList<>();
+    List<Planeta> planetas;
 
     public Estrella() {
+        this.agujerosDeGusano = new ArrayList<>();
+        this.naves = new ArrayList<>();
+        this.planetas =  new ArrayList<>();
     }
 
-    public Estrella(String nombre, int coordenadaX, int coordneadaY, int coordenadaZ, int column) {
+    public Estrella(String nombre, int coordenadaX, int coordneadaY, int coordenadaZ, int eid) {
         this.nombre = nombre;
         this.coordenadaX = coordenadaX;
         this.coordneadaY = coordneadaY;
         this.coordenadaZ = coordenadaZ;
-        this.column = column;
+        this.eid = eid;
+        this.agujerosDeGusano = new ArrayList<>();
+        this.naves = new ArrayList<>();
+        planetas =  new ArrayList<>();
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public String getNombre() {
         return nombre;
@@ -77,12 +80,12 @@ public class Estrella{
         this.coordenadaZ = coordenadaZ;
     }
 
-    public int getColumn() {
-        return column;
+    public int getEid() {
+        return eid;
     }
 
-    public void setColumn(int column) {
-        this.column = column;
+    public void setEid(int eid) {
+        this.eid = eid;
     }
 
     public List<AgujeroDeGusano> getAgujerosDeGusano() {

@@ -12,20 +12,24 @@ import javax.persistence.ManyToMany;
 public class AgujeroDeGusano{
     @Id
     @GeneratedValue
-    int ID;
+    long ID;
+    int aid;
     @ManyToMany(mappedBy="agujerosDeGusano")
-    List<Estrella> estrellas = new ArrayList<>();
+    List<Estrella> estrellas;
 
     public AgujeroDeGusano() {
+        estrellas = new ArrayList<>();
     }
 
-    public int getID() {
+    public AgujeroDeGusano(int aid) {
+        this.aid = aid;
+        estrellas = new ArrayList<>();
+    }
+
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public List<Estrella> getEstrellas() {
         return estrellas;
@@ -33,6 +37,14 @@ public class AgujeroDeGusano{
 
     public void setEstrellas(List<Estrella> estrellas) {
         this.estrellas = estrellas;
+    }
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
     }
 
     
