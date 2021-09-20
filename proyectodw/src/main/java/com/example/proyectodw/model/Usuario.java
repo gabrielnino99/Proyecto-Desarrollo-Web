@@ -43,7 +43,7 @@ public class Usuario{
     }
 
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
     public void setID(Long ID) {

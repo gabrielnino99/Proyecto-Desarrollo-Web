@@ -43,7 +43,6 @@ public class EstrellaService {
             estrellaEncontrada.setNaves(estrella.getNaves());
             estrellaEncontrada.setPlanetas(estrella.getPlanetas());
             estrellaEncontrada.setAgujerosDeGusano(estrella.getAgujerosDeGusano());
-            estrellaEncontrada.setColumn(estrella.getColumn());
 
             estrellaRepository.save(estrellaEncontrada);
         }

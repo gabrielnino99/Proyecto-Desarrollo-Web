@@ -1,5 +1,7 @@
 package com.example.proyectodw.model;
 
+import com.example.proyectodw.DAO.*;
+
 import java.util.Random;
 import javax.transaction.Transactional;
 
