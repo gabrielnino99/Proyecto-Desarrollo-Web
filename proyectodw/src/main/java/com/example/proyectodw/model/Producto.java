@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Producto{
+public class Producto {
     @Id
     @GeneratedValue
-    long ID;
+    Long ID;
     int prid;
     String nombre;
     int factorDemanda;
@@ -36,10 +36,13 @@ public class Producto{
         this.planetas = new ArrayList<>();
     }
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
 
     public String getNombre() {
         return nombre;
@@ -100,4 +103,3 @@ public class Producto{
 
 
 }
-

@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Usuario{
     @Id
     @GeneratedValue
-    long ID;
+    Long ID;
     int uid;
     String userName;
     String password;
@@ -42,15 +42,19 @@ public class Usuario{
         this.transacciones = new ArrayList<>();
     }
 
+
     public long getID() {
         return ID;
+    }
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
 
     public String getUserName() {
         return userName;
     }
-
+    
     public void setUserName(String userName) {
         this.userName = userName;
     }

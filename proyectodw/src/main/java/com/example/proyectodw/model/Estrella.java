@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 public class Estrella{
     @Id
     @GeneratedValue
-    long ID;
+    Long ID;
     String nombre;
     int coordenadaX;
     int coordneadaY;
@@ -43,10 +43,13 @@ public class Estrella{
         planetas =  new ArrayList<>();
     }
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
 
+    public void setID(Long ID) {
+        this.ID = ID;
+    }
 
     public String getNombre() {
         return nombre;
