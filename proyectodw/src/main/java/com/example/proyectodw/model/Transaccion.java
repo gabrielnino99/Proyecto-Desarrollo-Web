@@ -9,7 +9,8 @@ import javax.persistence.ManyToOne;
 public class Transaccion{
     @Id
     @GeneratedValue
-    int ID;
+    long ID;
+    int tid;
     int precioTotal;
     @ManyToOne
     Usuario usuario;
@@ -17,18 +18,16 @@ public class Transaccion{
     public Transaccion() {
     }
 
-    public Transaccion(int precioTotal, Usuario usuario) {
+    public Transaccion(int tid, int precioTotal, Usuario usuario) {
+        this.tid = tid;
         this.precioTotal = precioTotal;
         this.usuario = usuario;
     }
 
-    public int getID() {
+    public long getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
 
     public int getPrecioTotal() {
         return precioTotal;
@@ -44,6 +43,14 @@ public class Transaccion{
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public int getTid() {
+        return tid;
+    }
+
+    public void setTid(int tid) {
+        this.tid = tid;
     }
 
     

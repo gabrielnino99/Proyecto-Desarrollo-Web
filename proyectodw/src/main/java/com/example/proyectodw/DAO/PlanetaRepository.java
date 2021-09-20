@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PlanetaRepository extends CrudRepository<Planeta, Long>{
-    
+    Planeta findByPlid(int plid);
 }

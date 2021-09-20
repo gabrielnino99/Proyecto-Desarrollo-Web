@@ -17,19 +17,23 @@ public class Nave{
     String nombre;
     int carga;
     int velocidad;
+    int nid;
     @ManyToOne
     Estrella estrella;
     @OneToMany(mappedBy="nave")
-    List<Usuario> usuarios = new ArrayList<>();
+    List<Usuario> usuarios;
 
     public Nave() {
+        this.usuarios = new ArrayList<>();
     }
 
-    public Nave(String nombre, int carga, int velocidad, Estrella estrella) {
+    public Nave(String nombre, int carga, int velocidad, Estrella estrella, int nid) {
         this.nombre = nombre;
         this.carga = carga;
         this.velocidad = velocidad;
         this.estrella = estrella;
+        this.nid = nid;
+        this.usuarios = new ArrayList<>();
     }
 
     public Long getID() {
@@ -80,6 +84,14 @@ public class Nave{
         this.usuarios = usuarios;
     }
 
-    
+    public int getNid() {
+        return nid;
+    }
+
+    public void setNid(int nid) {
+        this.nid = nid;
+    }
+
+
 
 }

@@ -14,18 +14,22 @@ public class Planeta {
     @Id
     @GeneratedValue
     Long ID;
+    int plid;
     String nombre;
     @ManyToOne
     Estrella estrella;
     @ManyToMany
-    List<Producto> productos = new ArrayList<>();
+    List<Producto> productos;
 
     public Planeta() {
+        this.productos = new ArrayList<>();
     }
 
-    public Planeta(String nombre, Estrella estrella) {
+    public Planeta(String nombre, int plid,Estrella estrella) {
         this.nombre = nombre;
+        this.plid = plid;
         this.estrella = estrella;
+        this.productos = new ArrayList<>();
     }
 
     public Long getID() {
@@ -59,5 +63,15 @@ public class Planeta {
     public void setProductos(List<Producto> productos) {
         this.productos = productos;
     }
+
+    public int getPlid() {
+        return plid;
+    }
+
+    public void setPlid(int plid) {
+        this.plid = plid;
+    }
+
+    
 
 }

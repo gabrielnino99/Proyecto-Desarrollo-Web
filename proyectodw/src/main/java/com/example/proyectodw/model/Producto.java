@@ -13,23 +13,27 @@ public class Producto {
     @Id
     @GeneratedValue
     Long ID;
+    int prid;
     String nombre;
     int factorDemanda;
     int stock;
     int factorOferta;
     int column;
-    @ManyToMany(mappedBy = "productos")
-    List<Planeta> planetas = new ArrayList<>();
+    @ManyToMany(mappedBy="productos")
+    List<Planeta> planetas;
 
     public Producto() {
+        this.planetas = new ArrayList<>();
     }
 
-    public Producto(String nombre, int factorDemanda, int stock, int factorOferta, int column) {
+    public Producto(String nombre, int prid,int factorDemanda, int stock, int factorOferta, int column) {
         this.nombre = nombre;
+        this.prid = prid;
         this.factorDemanda = factorDemanda;
         this.stock = stock;
         this.factorOferta = factorOferta;
         this.column = column;
+        this.planetas = new ArrayList<>();
     }
 
     public Long getID() {
@@ -87,5 +91,15 @@ public class Producto {
     public void setPlanetas(List<Planeta> planetas) {
         this.planetas = planetas;
     }
+
+    public int getPrid() {
+        return prid;
+    }
+
+    public void setPrid(int prid) {
+        this.prid = prid;
+    }
+
+
 
 }

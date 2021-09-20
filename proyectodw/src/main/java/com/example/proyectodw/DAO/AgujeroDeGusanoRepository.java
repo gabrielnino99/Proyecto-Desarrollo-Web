@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AgujeroDeGusanoRepository extends CrudRepository<AgujeroDeGusano, Long>{
-
+    AgujeroDeGusano findByAid(int aid);
 }
