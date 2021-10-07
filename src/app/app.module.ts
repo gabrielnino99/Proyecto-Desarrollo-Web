@@ -12,6 +12,9 @@ import { PlanetaComponent } from './components/Navegacion/planeta/planeta.compon
 import { EstrellaComponent } from './components/Navegacion/estrella/estrella.component';
 import { NaveComponent } from './components/Navegacion/nave/nave.component';
 import { LogoutComponent } from './components/Logout/logout/logout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './components/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,12 @@ import { LogoutComponent } from './components/Logout/logout/logout.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    SharedModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

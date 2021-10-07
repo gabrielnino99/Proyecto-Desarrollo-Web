@@ -1,1 +1,22 @@
-<p>login works!</p>
+<div class="body" body >
+    <div class="login">
+        <!-- <mat-spinner *ngIf = "loading " class = "spinner" diameter = "50"></mat-spinner> -->
+        <form> <!--este form hace referencia a la propiedad for del login component ts-->
+            <h2 class ="tituloInicial">Bienvenido a xxxxx</h2>
+            <!-- <img src="" width= "50%"> -->
+            <h1>Iniciar sesión</h1>
+            
+            <h1></h1>
+            <mat-form-field class = "ancho" appearance="fill" >
+                <mat-label>Ingrese su correo electrónico</mat-label>
+                <input type="email" name="correo" ngModel #correoInput="ngModel" required matInput autocomplete="off"> <!--este usuario hace referencia a la propiedad usuario del login component ts-->
+            </mat-form-field>
+            <mat-form-field class = "ancho" appearance="fill">
+                <mat-label>Ingrese su contraseña</mat-label>
+                <input name="password" ngModel #passwordInput="ngModel" type = "password" required matInput autocomplete="off">
+            </mat-form-field>
+            <button  type = "submit" class = "ancho button" mat-raised-button color="primary">Ingresar</button>
+            <button  class = "ancho button" mat-raised-button color="accent" routerLink = "/crear-cuenta">Crear cuenta</button>
+        </form>
+    </div>
+</div>
