@@ -1,0 +1,16 @@
+.margen 
+{
+   height: 1120px;
+   width: 1120px;
+   margin: auto;
+}
+
+.ancho
+{
+    width: 90%;
+}
+
+.centro
+{
+    text-align: center;
+}

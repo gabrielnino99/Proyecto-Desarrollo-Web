@@ -9,14 +9,14 @@
             <h1></h1>
             <mat-form-field class = "ancho" appearance="fill" >
                 <mat-label>Ingrese su correo electrónico</mat-label>
-                <input type="email" name="correo" ngModel #correoInput="ngModel" required matInput autocomplete="off"> <!--este usuario hace referencia a la propiedad usuario del login component ts-->
+                <input type="email" name="correo" required matInput autocomplete="off"> 
             </mat-form-field>
             <mat-form-field class = "ancho" appearance="fill">
                 <mat-label>Ingrese su contraseña</mat-label>
-                <input name="password" ngModel #passwordInput="ngModel" type = "password" required matInput autocomplete="off">
+                <input name="password" type = "password" required matInput autocomplete="off">
             </mat-form-field>
             <button  type = "submit" class = "ancho button" mat-raised-button color="primary">Ingresar</button>
-            <button  class = "ancho button" mat-raised-button color="accent" routerLink = "/crear-cuenta">Crear cuenta</button>
+            <button  class = "ancho button" mat-raised-button color="accent" routerLink = "/registro">Crear cuenta</button>
         </form>
     </div>
 </div>
