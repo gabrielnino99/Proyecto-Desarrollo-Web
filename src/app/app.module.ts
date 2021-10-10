@@ -15,6 +15,7 @@ import { LogoutComponent } from './components/Logout/logout/logout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './components/shared/shared.module';
+import { NavegacionComponent } from './components/Navegacion/navegacion/navegacion.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SharedModule } from './components/shared/shared.module';
     PlanetaComponent,
     EstrellaComponent,
     NaveComponent,
-    LogoutComponent
+    LogoutComponent,
+    NavegacionComponent
   ],
   imports: [
     BrowserModule,
