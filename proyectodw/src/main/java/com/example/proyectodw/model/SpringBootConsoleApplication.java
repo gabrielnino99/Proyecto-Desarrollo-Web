@@ -2,6 +2,9 @@ package com.example.proyectodw.model;
 
 import com.example.proyectodw.DAO.*;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 import java.util.Random;
 import javax.transaction.Transactional;
 
@@ -16,10 +19,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
+    /*
     public static final int NUM_ESTRELLAS = 40000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
+    public static final int NUM_EQUIPOS = 10;
+    */
+    public static final int NUM_ESTRELLAS = 50;
+    public static final int NUM_PRODUCTOS = 5;
+    public static final int NUM_NAVES = 20;
+    public static final int NUM_USUARIOS = 10;
     public static final int NUM_EQUIPOS = 10;
     
     @Autowired
@@ -51,6 +61,9 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
     @Transactional
     public void run(String... args) {
         Random randomEstrella = new Random(1234);
+        Random randomX = new Random(0);
+        Random randomY = new Random(0);
+        Random randomZ = new Random(0);
         Random randomPlaneta = new Random(5678);
         Random randomProducto = new Random(123);
         Random randomNave = new Random(456);
@@ -64,12 +77,25 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         LOG.info("EXECUTING : command line runner");
         //Inserta las estrellas
         LOG.info("INSERTANDO: Estrellas con 1% de probabilidad de tener entre 1 y 3 Planetas");
+        Estrella semilla = new Estrella("alpha", 0,0,0,0);
+        estrellaRepository.save(semilla);
+        int incremento = 0;
         int contPlaneta = 0;
-        for(int i=0;i<NUM_ESTRELLAS;i++){
+        /*for(int i=0;i<NUM_ESTRELLAS;i++){
             String nombreEstrella = randomGenEstrella.generate(5,15);
-            int coordenadaX = randomEstrella.nextInt(1000000);
-            int coordenadaY = randomEstrella.nextInt(1000000);
-            int coordenadaZ = randomEstrella.nextInt(1000000);
+            int coordenadaX = incremento;
+            int coordenadaY = incremento;
+            int coordenadaZ = incremento;
+            int coordRandom = randomEstrella.nextInt(3);
+            if(coordRandom == 0){
+                coordenadaX += randomX.nextInt(1000);
+            }
+            else if(coordRandom == 1){
+                coordenadaY += randomY.nextInt(1000);
+            }
+            else{
+                coordenadaZ += randomZ.nextInt(1000);
+            }
             Estrella estrella = new Estrella(nombreEstrella, coordenadaX, coordenadaY, coordenadaZ, i);
             estrellaRepository.save(estrella);
             if(randomPlaneta.nextInt(100) < 1){
@@ -81,10 +107,44 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
                     contPlaneta++;
                 }
             }
-            
-
+            incremento += 1000;
+        }*/
+        int contEstrella = 1;
+        while(contEstrella < NUM_ESTRELLAS){
+            int incremento2 = 10;
+            for(int j=0;j<contEstrella*3;j++){
+                String nombreEstrella = randomGenEstrella.generate(5,15);
+                int coordenadaX = incremento + incremento2;
+                int coordenadaY = incremento + incremento2;
+                int coordenadaZ = incremento + incremento2;
+                int coordRandom = randomEstrella.nextInt(3);
+                if(coordRandom == 0){
+                    coordenadaX += randomX.nextInt(1000);
+                }
+                else if(coordRandom == 1){
+                    coordenadaY += randomY.nextInt(1000);
+                }
+                else if(coordRandom == 2){
+                    coordenadaZ += randomZ.nextInt(1000);
+                }
+                Estrella estrella = new Estrella(nombreEstrella, coordenadaX, coordenadaY, coordenadaZ, contEstrella+j);
+                estrellaRepository.save(estrella);
+                if(randomPlaneta.nextInt(100) < 1){
+                    int numPlanetas = randomPlaneta.nextInt(3);
+                    for(int k=0;k<numPlanetas+1;k++){
+                        String nombrePlaneta = randomGenPlaneta.generate(7,20);
+                        Planeta planeta = new Planeta(nombrePlaneta, contPlaneta, estrella);
+                        planetaRepository.save(planeta);
+                        contPlaneta++;
+                    }
+                }
+                incremento2 += 10; 
+            }
+            contEstrella = contEstrella + contEstrella*3;
+            incremento += 1000;
         }
-
+       
+        
         //Inserta los productos
         LOG.info("INSERTANDO: Productos");
         for(int i=0;i<NUM_PRODUCTOS;i++){
@@ -110,6 +170,12 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
                 naveRepository.save(nave);
             }
         }
+        //Nave de prueba FrontEnd
+        Estrella estrella = estrellaRepository.findByEid(0);
+        if(estrella != null){
+            Nave nave = new Nave("Prometeo", 0, 300, estrella, 21);
+            naveRepository.save(nave);
+        }
          //Inserta los Usuarios
          LOG.info("INSERTANDO: Usuarios");
          int usuariosXEquipo = NUM_USUARIOS / NUM_EQUIPOS;
@@ -132,6 +198,11 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             } 
              
          }
-
+         //Usuario de prueba FrontEnd
+         Nave miNave = naveRepository.findByNid(21);
+         if(miNave != null){
+            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 0, 0, miNave);
+            usuarioRepository.save(usuario);
+         }
     }
 }

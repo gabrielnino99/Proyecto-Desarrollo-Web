@@ -16,7 +16,7 @@ public class Estrella{
     Long ID;
     String nombre;
     int coordenadaX;
-    int coordneadaY;
+    int coordenadaY;
     int coordenadaZ;
     int eid;
     @ManyToMany
@@ -32,10 +32,10 @@ public class Estrella{
         this.planetas =  new ArrayList<>();
     }
 
-    public Estrella(String nombre, int coordenadaX, int coordneadaY, int coordenadaZ, int eid) {
+    public Estrella(String nombre, int coordenadaX, int coordenadaY, int coordenadaZ, int eid) {
         this.nombre = nombre;
         this.coordenadaX = coordenadaX;
-        this.coordneadaY = coordneadaY;
+        this.coordenadaY = coordenadaY;
         this.coordenadaZ = coordenadaZ;
         this.eid = eid;
         this.agujerosDeGusano = new ArrayList<>();
@@ -68,11 +68,11 @@ public class Estrella{
     }
 
     public int getCoordneadaY() {
-        return coordneadaY;
+        return coordenadaY;
     }
 
     public void setCoordneadaY(int coordneadaY) {
-        this.coordneadaY = coordneadaY;
+        this.coordenadaY = coordneadaY;
     }
 
     public int getCoordenadaZ() {
