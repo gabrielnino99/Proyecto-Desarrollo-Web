@@ -41,6 +41,9 @@ td{
    z-index: 1;
    position: absolute;
    margin: 10px;
+   font-size: 20px;
+   width: 180px;
+   height: 30px;
 }
 /*########## Boton Logout y Usuario ############*/
 .imgLogout{
@@ -50,6 +53,7 @@ td{
 .botonLogout{
    background-color: rgb(189, 181, 187);
    z-index: 1;
+   margin-left: 1em;
    position: relative;
 }
 
@@ -60,7 +64,6 @@ td{
 .botonUsuario{
    background-color: rgb(235, 164, 23);
    z-index: 1;
-   margin-left: 1em;
    position: relative;
 }
 .divSuperior{

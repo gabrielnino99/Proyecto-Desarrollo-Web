@@ -9,8 +9,6 @@ import { ComprarProductoComponent } from './components/Comercio/comprar-producto
 import { ProductoComponent } from './components/Comercio/producto/producto.component';
 import { VenderProductoComponent } from './components/Comercio/vender-producto/vender-producto.component';
 import { PlanetaComponent } from './components/Navegacion/planeta/planeta.component';
-import { EstrellaComponent } from './components/Navegacion/estrella/estrella.component';
-import { NaveComponent } from './components/Navegacion/nave/nave.component';
 import { LogoutComponent } from './components/Logout/logout/logout.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -26,8 +24,6 @@ import { NavegacionComponent } from './components/Navegacion/navegacion/navegaci
     ProductoComponent,
     VenderProductoComponent,
     PlanetaComponent,
-    EstrellaComponent,
-    NaveComponent,
     LogoutComponent,
     NavegacionComponent
   ],
