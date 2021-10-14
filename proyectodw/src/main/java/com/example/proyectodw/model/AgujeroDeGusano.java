@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AgujeroDeGusano{
@@ -14,8 +14,8 @@ public class AgujeroDeGusano{
     @GeneratedValue
     long ID;
     int aid;
-    @ManyToMany(mappedBy="agujerosDeGusano")
-    List<Estrella> estrellas;
+    @OneToMany(mappedBy="agujeroDeGusano")
+    List<AgujeroDeGusanoEstrella> estrellas;
 
     public AgujeroDeGusano() {
         estrellas = new ArrayList<>();
@@ -31,11 +31,11 @@ public class AgujeroDeGusano{
     }
 
 
-    public List<Estrella> getEstrellas() {
+    public List<AgujeroDeGusanoEstrella> getEstrellas() {
         return estrellas;
     }
 
-    public void setEstrellas(List<Estrella> estrellas) {
+    public void setEstrellas(List<AgujeroDeGusanoEstrella> estrellas) {
         this.estrellas = estrellas;
     }
 

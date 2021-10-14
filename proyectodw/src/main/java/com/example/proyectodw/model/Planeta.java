@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Planeta {
@@ -18,8 +18,8 @@ public class Planeta {
     String nombre;
     @ManyToOne
     Estrella estrella;
-    @ManyToMany
-    List<Producto> productos;
+    @OneToMany(mappedBy="planeta")
+    List<PlanetaProducto> productos;
 
     public Planeta() {
         this.productos = new ArrayList<>();
@@ -56,11 +56,11 @@ public class Planeta {
         this.estrella = estrella;
     }
 
-    public List<Producto> getProductos() {
+    public List<PlanetaProducto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<PlanetaProducto> productos) {
         this.productos = productos;
     }
 

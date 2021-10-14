@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -19,8 +18,8 @@ public class Estrella{
     int coordenadaY;
     int coordenadaZ;
     int eid;
-    @ManyToMany
-    List<AgujeroDeGusano> agujerosDeGusano;
+    @OneToMany(mappedBy="estrella")
+    List<AgujeroDeGusanoEstrella> agujerosDeGusano;
     @OneToMany(mappedBy="estrella")
     List<Nave> naves;
     @OneToMany(mappedBy="estrella")
@@ -91,11 +90,11 @@ public class Estrella{
         this.eid = eid;
     }
 
-    public List<AgujeroDeGusano> getAgujerosDeGusano() {
+    public List<AgujeroDeGusanoEstrella> getAgujerosDeGusano() {
         return agujerosDeGusano;
     }
 
-    public void setAgujerosDeGusano(List<AgujeroDeGusano> agujerosDeGusano) {
+    public void setAgujerosDeGusano(List<AgujeroDeGusanoEstrella> agujerosDeGusano) {
         this.agujerosDeGusano = agujerosDeGusano;
     }
 

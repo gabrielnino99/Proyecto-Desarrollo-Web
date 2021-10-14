@@ -2,9 +2,6 @@ package com.example.proyectodw.model;
 
 import com.example.proyectodw.DAO.*;
 
-import java.util.LinkedList;
-import java.util.Queue;
-
 import java.util.Random;
 import javax.transaction.Transactional;
 
@@ -31,7 +28,10 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 10;
     public static final int NUM_EQUIPOS = 10;
-    
+
+    @Autowired
+    AgujeroDeGusanoRepository agujeroDeGusanoRepository;
+
     @Autowired
     EstrellaRepository estrellaRepository;
 
@@ -46,16 +46,6 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
 
     @Autowired
     UsuarioRepository usuarioRepository;
-
-    /*public static void main(String[] args) {
-        LOG.info("STARTING THE APPLICATION");
-        SpringApplication app = new SpringApplication(SpringBootConsoleApplication.class);
-        //Se especifica la propiedad spring.main.web-application-type=NONE aplicada a esta clase
-        app.setWebApplicationType(WebApplicationType.NONE);
-        app.run(args);
-        
-        LOG.info("APPLICATION FINISHED");
-    }*/
  
     @Override
     @Transactional
@@ -74,41 +64,23 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         RandomStringGenerator randomGenNave = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomNave::nextInt).build();
         RandomStringGenerator randomGenUsuario = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomUsuario::nextInt).build();
         
+
         LOG.info("EXECUTING : command line runner");
+
+        //Inserta los Agujeros de Gusano Bandera
+        LOG.info("INSERTANDO: Agujeros de Gusano que seran la quinta parte de las Estrellas");
+        int num_agujeros = NUM_ESTRELLAS / 5;
+        for(int i=0;i<num_agujeros;i++){
+            AgujeroDeGusano agujero = new AgujeroDeGusano(0);
+            agujeroDeGusanoRepository.save(agujero);
+        }
         //Inserta las estrellas
         LOG.info("INSERTANDO: Estrellas con 1% de probabilidad de tener entre 1 y 3 Planetas");
         Estrella semilla = new Estrella("alpha", 0,0,0,0);
         estrellaRepository.save(semilla);
         int incremento = 0;
         int contPlaneta = 0;
-        /*for(int i=0;i<NUM_ESTRELLAS;i++){
-            String nombreEstrella = randomGenEstrella.generate(5,15);
-            int coordenadaX = incremento;
-            int coordenadaY = incremento;
-            int coordenadaZ = incremento;
-            int coordRandom = randomEstrella.nextInt(3);
-            if(coordRandom == 0){
-                coordenadaX += randomX.nextInt(1000);
-            }
-            else if(coordRandom == 1){
-                coordenadaY += randomY.nextInt(1000);
-            }
-            else{
-                coordenadaZ += randomZ.nextInt(1000);
-            }
-            Estrella estrella = new Estrella(nombreEstrella, coordenadaX, coordenadaY, coordenadaZ, i);
-            estrellaRepository.save(estrella);
-            if(randomPlaneta.nextInt(100) < 1){
-                int numPlanetas = randomPlaneta.nextInt(3);
-                for(int j=0;j<numPlanetas+1;j++){
-                    String nombrePlaneta = randomGenPlaneta.generate(7,20);
-                    Planeta planeta = new Planeta(nombrePlaneta, contPlaneta, estrella);
-                    planetaRepository.save(planeta);
-                    contPlaneta++;
-                }
-            }
-            incremento += 1000;
-        }*/
+       
         int contEstrella = 1;
         while(contEstrella < NUM_ESTRELLAS){
             int incremento2 = 10;

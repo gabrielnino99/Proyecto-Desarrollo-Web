@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Producto {
@@ -19,8 +19,8 @@ public class Producto {
     int stock;
     int factorOferta;
     int column;
-    @ManyToMany(mappedBy="productos")
-    List<Planeta> planetas;
+    @OneToMany(mappedBy="producto")
+    List<PlanetaProducto> planetas;
 
     public Producto() {
         this.planetas = new ArrayList<>();
@@ -84,11 +84,11 @@ public class Producto {
         this.column = column;
     }
 
-    public List<Planeta> getPlanetas() {
+    public List<PlanetaProducto> getPlanetas() {
         return planetas;
     }
 
-    public void setPlanetas(List<Planeta> planetas) {
+    public void setPlanetas(List<PlanetaProducto> planetas) {
         this.planetas = planetas;
     }
 
