@@ -33,16 +33,22 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
     AgujeroDeGusanoRepository agujeroDeGusanoRepository;
 
     @Autowired
+    AgujeroDeGusanoEstrellaRepository agujeroDeGusanoEstrellaRepository;
+
+    @Autowired
     EstrellaRepository estrellaRepository;
+
+    @Autowired
+    NaveRepository naveRepository;
 
     @Autowired
     PlanetaRepository planetaRepository;
 
     @Autowired
-    ProductoRepository productoRepository;
+    PlanetaProductoRepository planetaProductoRepository;
 
     @Autowired
-    NaveRepository naveRepository;
+    ProductoRepository productoRepository;
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -71,7 +77,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         LOG.info("INSERTANDO: Agujeros de Gusano que seran la quinta parte de las Estrellas");
         int num_agujeros = NUM_ESTRELLAS / 5;
         for(int i=0;i<num_agujeros;i++){
-            AgujeroDeGusano agujero = new AgujeroDeGusano(0);
+            AgujeroDeGusano agujero = new AgujeroDeGusano(i);
             agujeroDeGusanoRepository.save(agujero);
         }
         //Inserta las estrellas
@@ -115,8 +121,22 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             contEstrella = contEstrella + contEstrella*3;
             incremento += 1000;
         }
-       
-        
+       //Conectar Estrellas con Agujeros de Gusano
+       LOG.info("CONECTANDO: Estrellas con Agujeros de Gusano");
+       for(int i=0;i<num_agujeros;i++){
+            AgujeroDeGusano agujero = agujeroDeGusanoRepository.findByAid(i);
+            int eidA =  randomEstrella.nextInt(NUM_ESTRELLAS);
+            Estrella estrellaA = estrellaRepository.findByEid(eidA);
+            int eidB = 0;
+            do{
+                eidB = randomEstrella.nextInt(NUM_ESTRELLAS);
+            }while(eidA == eidB);
+            Estrella estrellaB = estrellaRepository.findByEid(eidB);
+            AgujeroDeGusanoEstrella agujeroEstrellaA = new AgujeroDeGusanoEstrella(agujero,estrellaA);
+            agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaA);
+            AgujeroDeGusanoEstrella agujeroEstrellaB = new AgujeroDeGusanoEstrella(agujero,estrellaB);
+            agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaB);
+        }
         //Inserta los productos
         LOG.info("INSERTANDO: Productos");
         for(int i=0;i<NUM_PRODUCTOS;i++){
@@ -124,8 +144,22 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             int factorDemanda = randomProducto.nextInt(100);
             int stock = randomProducto.nextInt(100);
             int factorOferta =  randomProducto.nextInt(100);
-            Producto producto = new Producto(nombreProducto, i,factorDemanda, stock, factorOferta, i+1);
+            Producto producto = new Producto(nombreProducto, i,factorDemanda, stock, factorOferta, 0);
             productoRepository.save(producto);
+        }
+
+        //Conectar Planetas y Productos
+       LOG.info("CONECTANDO: Planetas y Productos");
+       for(int i=0;i<NUM_PRODUCTOS;i++){
+           Producto producto = productoRepository.findByPrid(i);
+            for(int j=0; j<contPlaneta;j++){
+                int probabilidadPlaneta = randomPlaneta.nextInt(100);
+                if(probabilidadPlaneta < 30){
+                    Planeta planeta = planetaRepository.findByPlid(j);
+                    PlanetaProducto planetaProducto = new PlanetaProducto(planeta,producto);
+                    planetaProductoRepository.save(planetaProducto);
+                }
+            }
         }
 
         //Inserta las naves
@@ -134,7 +168,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             String nombreNave = randomGenNave.generate(7,20);
             int carga = 0;
             int velocidad = randomNave.nextInt(100);
-            int idEstrella =  randomProducto.nextInt(NUM_ESTRELLAS);
+            int idEstrella =  randomEstrella.nextInt(NUM_ESTRELLAS);
             Estrella estrella = estrellaRepository.findByEid(idEstrella);
             
             if(estrella != null){
