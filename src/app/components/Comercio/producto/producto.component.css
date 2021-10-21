@@ -12,9 +12,14 @@ html{
     position: absolute;
  }
 /*############### Division Pergamino ##################*/
+h5{
+   z-index: 1;
+   color: rgb(80, 45, 4);
+   position: absolute;
+}
  .pergamino{
-    width: 30%;
-    height: 70%;
+    width: 500px;
+    height: 400px;
     z-index: 1;   
     position: absolute;
  }

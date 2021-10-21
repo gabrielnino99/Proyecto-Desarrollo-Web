@@ -12,6 +12,17 @@ html{
  }
  
  /*############### ESTRELLA ##################*/
+ h1{
+    z-index: 1;
+    color: white;
+    position: absolute;
+ }
+
+ h5{
+   z-index: 1;
+   color: white;
+   position: absolute;
+}
  table{
     margin: auto;
  }

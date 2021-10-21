@@ -1,1 +1,45 @@
-<p>comprar-producto works!</p>
+<html>
+   <body>
+       <img class="imagenEspacio" src="./assets/imagenes/espacio_exterior.jpg">
+       
+        <div>
+            <div style="display: flex;">
+                <div>
+                    <div class="divSuperior">
+                        <button class="boton" (clic)="comprar(formularioComprar.get('cantidad')!.value)">Comprar</button>
+                    </div>
+                    <div class="divPlaneta">
+                        <img class="planeta" src="./assets/imagenes/planeta_rojo.png">
+                        <img class="nave" src="./assets/imagenes/nave_caza.png">
+
+                    </div>
+                    <div class="divInferior">
+                        <a [routerLink]="['/usuario', usuario.id,'navegacion', nave.id,'estrella', estrella.id, 'planeta', planeta.id]" routerLinkActive="router-link-active">
+                            <button class="botonCerrar">Cerrar Lista</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="divPergamino">
+                    <img class="pergamino" src="./assets/imagenes/pergamino.png">
+                    <h5>
+                       <br>Nombre de Producto: {{planetaProducto.producto.nombre}}
+                        <br>Stock: {{planetaProducto.stock}}
+                        <br>Factor Demanda: {{planetaProducto.factorDemanda}}
+                        <br>Factor Oferta: {{planetaProducto.factorOferta}}
+                    </h5>
+                    <div>
+                        <form [formGroup] ="formularioComprar">
+                            <br>
+                            Cantidad: <input type="text" class="form-control" style="z-index: 2; position: absolute;" formControlName="cantidad">
+                            <br>
+                            <button class="btn btn-primary" type="submit" style="z-index: 2; position: absolute;"
+                            (click)="comprar(formularioComprar.get('cantidad')!.value)">Comprar</button>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+   </body>
+</html>

@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './components/shared/shared.module';
 import { NavegacionComponent } from './components/Navegacion/navegacion/navegacion.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { NavegacionComponent } from './components/Navegacion/navegacion/navegaci
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

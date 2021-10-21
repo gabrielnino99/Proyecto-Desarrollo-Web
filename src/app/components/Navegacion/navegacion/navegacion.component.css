@@ -5,6 +5,12 @@ html{
  
 }
 
+h1{
+   z-index: 1;
+   color: white;
+   position: absolute;
+}
+
 .imagenEspacio{
    width: 99%;
    height: 99%;

@@ -1,6 +1,11 @@
 <html>
    <body>
        <img class="imagenEspacio" src="./assets/imagenes/espacio_exterior.jpg">
+       <h1>
+           ID: {{selectedEstrella.id}}, Nombre: {{selectedEstrella.nombre}}
+            <br>
+            ({{selectedEstrella.coordenadaX}}, {{selectedEstrella.coordenadaY}}, {{selectedEstrella.coordenadaZ}})
+       </h1>
         <div class="divSuperior">
             <button class="botonUsuario">
                 <img class="imgUsuario" src="./assets/imagenes/usuario.png">
@@ -13,32 +18,53 @@
         <table>
             <tr>
                 <td></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
+                <td (click)="seleccionarEstrella(estrellas[0])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td (click)="seleccionarEstrella(estrellas[1])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td (click)="seleccionarEstrella(estrellas[2])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
                 <td></td>
             </tr>
             <tr>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
+                <td (click)="seleccionarEstrella(estrellas[3])">  
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td (click)="seleccionarEstrella(estrellas[4])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
                 <td> 
                     <img class="nave" src="./assets/imagenes/nave_caza.png">
                     <img class="estrella" src="./assets/imagenes/estrella.png">
                 </td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
+                <td  (click)="seleccionarEstrella(estrellas[5])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td  (click)="seleccionarEstrella(estrellas[6])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
             </tr>
             <tr>
                 <td></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
-                <td> <img class="estrella" src="./assets/imagenes/estrella.png"></td>
+                <td (click)="seleccionarEstrella(estrellas[7])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td (click)="seleccionarEstrella(estrellas[8])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
+                <td (click)="seleccionarEstrella(estrellas[9])"> 
+                    <img class="estrella" src="./assets/imagenes/estrella.png">
+                </td>
                 <td></td>
             </tr>
         </table>
         </div>
         <div>
-            <button class="botonVisitar">Visitar Estrella</button>
+            <!--<a [routerLink]="['/navegacion', nave.id, 'estrella', selectedEstrella.id]" routerLinkActive="router-link-active"><button class="botonVisitar">Visitar Estrella</button></a>-->
+            <a [routerLink]="['estrella', selectedEstrella.id]" routerLinkActive="router-link-active"><button class="botonVisitar">Visitar Estrella</button></a>
         </div>
    </body>
 </html>

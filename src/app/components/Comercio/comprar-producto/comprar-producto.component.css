@@ -1,0 +1,105 @@
+/*BANDERA*/
+/*#####<#### FONDO #############*/
+html{
+    background-color: black;
+  
+ }
+ 
+ .imagenEspacio{
+    width: 99%;
+    height: 99%;
+    z-index: 0;   
+    position: absolute;
+ }
+/*############### Division Pergamino ##################*/
+h5{
+   z-index: 1;
+   color: rgb(80, 45, 4);
+   position: absolute;
+}
+
+.etiqueta{
+   z-index: 1;
+   color: rgb(80, 45, 4);
+   position: absolute;
+   font-size: 20px;
+}
+ .pergamino{
+    width: 500px;
+    height: 400px;
+    z-index: 1;   
+    position: absolute;
+ }
+ .divPergamino{
+    float:right;
+    padding: 5em;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    height: 70%;
+ }
+ /*############### Planeta y nave ##################*/
+ 
+ .planeta{
+    width: 250px;
+    height: 250px;
+    z-index: 1;
+    position: absolute;
+ }
+
+ .divPlaneta{
+    float:left;
+    padding: 5em;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 50%;
+ }
+ 
+ .nave{
+    width: 100px;
+    height: 100px;
+    z-index: 2;
+    position: absolute;
+ }
+ /*########## Boton Visitar ############*/
+ .boton{
+    background-color: rgb(240, 146, 221);
+    z-index: 1;
+    margin-left: 1em;
+    position: relative;
+    font-size: 20px;
+    width: 180px;
+    height: 30px;
+ }
+
+ .botonCerrar{
+    background-color: rgb(240, 146, 221);
+    z-index: 1;
+    margin-left: 1em;
+    position: absolute;
+    font-size: 20px;
+    width: 180px;
+    height: 30px;
+ }
+ /*########## Boton Logout y Usuario ############*/
+ 
+ 
+ 
+ .divSuperior{
+    width:80%;
+    height: 20%;
+     float:left;
+     padding-top: 2em;
+     align-items: center;
+     justify-content: center;
+  }
+
+  .divInferior{
+    width: 80%;
+    height: 20%;
+     float:left;
+     padding-top: 2em;
+     align-items: center;
+     justify-content: center;
+  }
