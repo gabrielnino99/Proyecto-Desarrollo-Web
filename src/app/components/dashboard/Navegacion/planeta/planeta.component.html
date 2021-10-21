@@ -1,0 +1,61 @@
+<html>
+   <body>
+       <img class="imagenEspacio" src="./assets/imagenes/espacio_exterior.jpg">
+       <h1>{{estrella.nombre}}</h1>
+        <div class="divSuperior">
+            <button class="botonUsuario">
+                <img class="imgUsuario" src="./assets/imagenes/usuario.png">
+            </button>
+            <button class="botonLogout">
+                <img class="imgLogout" src="./assets/imagenes/icon_logout.png">
+            </button>
+        </div>
+        <div class="tableroEstrellas">
+        <table>
+            <tr>
+                <td></td>
+                <td> </td>
+                <td *ngIf="planetas.length > 0"> 
+                    <a [routerLink]="['planeta', planetas[0].id]" routerLinkActive="router-link-active">
+                        <img class="planeta" src="./assets/imagenes/planeta_verde_azul.png">
+                        <h5>{{planetas[0].nombre}}</h5>
+                    </a>    
+                </td>
+                <td> </td>
+                <td></td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td> </td>
+                <td> 
+                    <img class="nave" src="./assets/imagenes/nave_caza.png">
+                </td>
+                <td></td>
+                <td *ngIf="agujerosDeGusano.length > 0">
+                    <img class="planeta" src="./assets/imagenes/hoyo_negro.png">
+                </td>
+            </tr>
+            <tr>
+                <td *ngIf="planetas.length > 1">
+                    <a [routerLink]="['planeta', planetas[1].id]" routerLinkActive="router-link-active">
+                        <img class="planeta" src="./assets/imagenes/planeta_amarillo.png">
+                        <h5>{{planetas[1].nombre}}</h5>
+                    </a>    
+                </td>
+                <td> </td>
+                <td> </td>
+                <td> </td>
+                <td *ngIf="planetas.length > 2">
+                    <a [routerLink]="['planeta', planetas[2].id]" routerLinkActive="router-link-active">
+                        <img class="planeta" src="./assets/imagenes/planeta_rojo.png">
+                        <h5>{{planetas[2].nombre}}</h5>
+                    </a>
+                </td>
+            </tr>
+        </table>
+        </div>
+        <div>
+            <a [routerLink]="['/dashboard/usuario', usuario.id,'navegacion', nave.id]" routerLinkActive="router-link-active"><button class="botonManejar">Manejar Nave</button></a>
+        </div>
+   </body>
+</html>

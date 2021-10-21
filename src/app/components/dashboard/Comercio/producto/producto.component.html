@@ -1,0 +1,42 @@
+<html>
+   <body>
+       <img class="imagenEspacio" src="./assets/imagenes/espacio_exterior.jpg">
+       
+        <div>
+            <div style="display: flex;">
+                <div>
+                    <div class="divSuperior">
+                        <a [routerLink]="['planeta-producto',selectedPlanetaProducto.producto.id,'comprar', selectedPlanetaProducto.id]" routerLinkActive="router-link-active">
+                            <button class="boton">Comprar</button>
+                        </a>
+                        <a [routerLink]="['planeta-producto',selectedPlanetaProducto.producto.id,'vender', selectedPlanetaProducto.id]" routerLinkActive="router-link-active">
+                            <button class="boton">Vender</button>
+                        </a>
+                    </div>
+                    <div class="divPlaneta">
+                        <img class="planeta" src="./assets/imagenes/planeta_rojo.png">
+                        <img class="nave" src="./assets/imagenes/nave_caza.png">
+
+                    </div>
+                    <div class="divInferior">
+                        <a [routerLink]="['/dashboard/usuario', usuario.id,'navegacion', nave.id,'estrella', estrella.id]" routerLinkActive="router-link-active">
+                            <button class="botonCerrar">Cerrar Lista</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="divPergamino">
+                    <img class="pergamino" src="./assets/imagenes/pergamino.png">
+                    <h5>Nombre Producto - Factor Oferta (FO) – Factor Demanda (FD) - Stock (S)
+                        <ul>
+                            <li *ngFor="let planetaProducto of planetasProductos" (click)="seleccionarProducto(planetaProducto)">
+                                {{planetaProducto.producto.nombre}} - FO: {{planetaProducto.factorOferta}} -
+                                 FD: {{planetaProducto.factorDemanda}} - S: {{planetaProducto.stock}}
+                            </li>
+                        </ul>
+                    </h5>
+                </div>
+            </div>
+        </div>
+      
+   </body>
+</html>

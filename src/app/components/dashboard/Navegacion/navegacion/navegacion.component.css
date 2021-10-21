@@ -1,0 +1,81 @@
+
+/*######### FONDO #############*/
+html{
+   background-color: black;
+ 
+}
+
+h1{
+   z-index: 1;
+   color: white;
+   position: absolute;
+}
+
+.imagenEspacio{
+   width: 99%;
+   height: 99%;
+   z-index: 0;   
+   position: absolute;
+}
+
+/*############### ESTRELLA ##################*/
+table{
+   margin: auto;
+}
+td{
+  margin: 5rem;
+    padding: 5rem;
+    justify-content: center;
+    align-items: center;
+}
+.estrella{
+   width: 100px;
+   height: 100px;
+   z-index: 1;
+   position: absolute;
+}
+
+.nave{
+   width: 100px;
+   height: 100px;
+   z-index: 2;
+   position: absolute;
+}
+/*########## Boton Visitar ############*/
+.botonVisitar{
+   background-color: rgb(240, 146, 221);
+   z-index: 1;
+   position: absolute;
+   margin: 10px;
+   font-size: 20px;
+   width: 180px;
+   height: 30px;
+}
+/*########## Boton Logout y Usuario ############*/
+.imgLogout{
+   width: 30px;
+   height: 30px;
+}
+.botonLogout{
+   background-color: rgb(189, 181, 187);
+   z-index: 1;
+   margin-left: 1em;
+   position: relative;
+}
+
+.imgUsuario{
+   width: 35px;
+   height: 35px;
+}
+.botonUsuario{
+   background-color: rgb(235, 164, 23);
+   z-index: 1;
+   position: relative;
+}
+.divSuperior{
+    float:right;
+    padding-right: 5em;
+    padding-top: 2em;
+    align-items: center;
+    justify-content: center;
+ }

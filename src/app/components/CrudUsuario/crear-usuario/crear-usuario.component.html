@@ -1,0 +1,41 @@
+<div>
+    <div class="form-group">
+      </div>
+</div>
+<div >
+    <mat-toolbar color="primary">
+        <span> Creación de cuenta</span>
+    </mat-toolbar>
+    <div class= "margen">
+        <mat-card>
+            <form>
+                <mat-grid-list cols="2" rowHeight="60px">
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Ingresa tu nombre de usuario</mat-label>
+                            <input matInput required autocomplete="off">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Ingresa tu contraseña</mat-label>
+                            <input matInput type="password" required autocomplete="off">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Ingresa tu correo electrónico</mat-label>
+                            <input matInput type="text" required autocomplete="off">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <div class = "centro">
+                    <button mat-raised-button color="primary" style="margin: 16px;" class = "tamano" type="submit">Crear cuenta</button>
+                    <button mat-raised-button color="accent" class = "tamano" routerLink = "/login">Cancelar</button>
+                </div>
+            </form>
+            
+        </mat-card>
+    </div>
+    
+</div>
