@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
     if (usuario == 'entrega2' && password == 'password') {
       this.loginExitoso(usuario);
       this.loading = true;
-      this._router.navigate(['/dashboard']);
+      this._router.navigate(['/dashboard/usuario/148/navegacion/137']);
     } else {
       this.errorLogin();
     }
