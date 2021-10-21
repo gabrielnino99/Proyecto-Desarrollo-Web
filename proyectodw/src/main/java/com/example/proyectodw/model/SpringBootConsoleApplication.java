@@ -16,18 +16,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
-    /*
+    
     public static final int NUM_ESTRELLAS = 40000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    */
+    
+
+    //DATOS DE PRUEBA SENCILLA
+    /*
     public static final int NUM_ESTRELLAS = 50;
     public static final int NUM_PRODUCTOS = 5;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 10;
     public static final int NUM_EQUIPOS = 10;
+    */
 
     @Autowired
     AgujeroDeGusanoRepository agujeroDeGusanoRepository;
@@ -86,6 +90,14 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         estrellaRepository.save(semilla);
         int incremento = 0;
         int contPlaneta = 0;
+        //Temporal
+        int numPlanetast = randomPlaneta.nextInt(3);
+        for(int k=0;k<numPlanetast+1;k++){
+            String nombrePlaneta = randomGenPlaneta.generate(7,20);
+            Planeta planeta = new Planeta(nombrePlaneta, contPlaneta, semilla);
+            planetaRepository.save(planeta);
+            contPlaneta++;
+        }
        
         int contEstrella = 1;
         while(contEstrella < NUM_ESTRELLAS){
@@ -141,10 +153,8 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         LOG.info("INSERTANDO: Productos");
         for(int i=0;i<NUM_PRODUCTOS;i++){
             String nombreProducto = randomGenProducto.generate(7,20);
-            int factorDemanda = randomProducto.nextInt(100);
-            int stock = randomProducto.nextInt(100);
-            int factorOferta =  randomProducto.nextInt(100);
-            Producto producto = new Producto(nombreProducto, i,factorDemanda, stock, factorOferta, 0);
+            double metros3 = randomProducto.nextDouble();
+            Producto producto = new Producto(nombreProducto, i, 0, metros3);
             productoRepository.save(producto);
         }
 
@@ -154,9 +164,12 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
            Producto producto = productoRepository.findByPrid(i);
             for(int j=0; j<contPlaneta;j++){
                 int probabilidadPlaneta = randomPlaneta.nextInt(100);
-                if(probabilidadPlaneta < 30){
+                if(probabilidadPlaneta < 70){
                     Planeta planeta = planetaRepository.findByPlid(j);
-                    PlanetaProducto planetaProducto = new PlanetaProducto(planeta,producto);
+                    int factorDemanda = randomProducto.nextInt(1000000);
+                    int stock = randomProducto.nextInt(1000000);
+                    int factorOferta =  randomProducto.nextInt(1000000);
+                    PlanetaProducto planetaProducto = new PlanetaProducto(factorDemanda, stock, factorOferta, planeta,producto);
                     planetaProductoRepository.save(planetaProducto);
                 }
             }
@@ -166,20 +179,21 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         LOG.info("INSERTANDO: Naves");
         for(int i=0;i<NUM_NAVES;i++){
             String nombreNave = randomGenNave.generate(7,20);
-            int carga = 0;
+            double carga = 0.0;
+            double cargaMaxima = (randomNave.nextDouble() + 1) * 100;
             int velocidad = randomNave.nextInt(100);
             int idEstrella =  randomEstrella.nextInt(NUM_ESTRELLAS);
             Estrella estrella = estrellaRepository.findByEid(idEstrella);
             
             if(estrella != null){
-                Nave nave = new Nave(nombreNave, carga, velocidad, estrella, i);
+                Nave nave = new Nave(nombreNave, carga, cargaMaxima,velocidad, estrella, i);
                 naveRepository.save(nave);
             }
         }
         //Nave de prueba FrontEnd
         Estrella estrella = estrellaRepository.findByEid(0);
         if(estrella != null){
-            Nave nave = new Nave("Prometeo", 0, 300, estrella, 21);
+            Nave nave = new Nave("Prometeo", 0.0, 120.0, 300, estrella, 21);
             naveRepository.save(nave);
         }
          //Inserta los Usuarios
@@ -195,7 +209,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
                     String password = randomGenUsuario.generate(6,20);
                     String rol = "Piloto";
                     String correo = randomGenUsuario.generate(10,30);
-                    int credito = 0;
+                    int credito = 1000000;
                     int tiempoDeJuego = 0;
                     Usuario usuario = new Usuario(contUsuarios,username, password, rol, correo, credito, tiempoDeJuego, nave);
                     usuarioRepository.save(usuario);
@@ -207,7 +221,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
          //Usuario de prueba FrontEnd
          Nave miNave = naveRepository.findByNid(21);
          if(miNave != null){
-            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 0, 0, miNave);
+            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 1000000, 0, miNave);
             usuarioRepository.save(usuario);
          }
     }

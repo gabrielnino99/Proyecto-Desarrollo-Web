@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Estrella{
     @Id
@@ -19,10 +21,13 @@ public class Estrella{
     int coordenadaZ;
     int eid;
     @OneToMany(mappedBy="estrella")
+    @JsonIgnore
     List<AgujeroDeGusanoEstrella> agujerosDeGusano;
     @OneToMany(mappedBy="estrella")
+    @JsonIgnore
     List<Nave> naves;
     @OneToMany(mappedBy="estrella")
+    @JsonIgnore
     List<Planeta> planetas;
 
     public Estrella() {
@@ -66,12 +71,12 @@ public class Estrella{
         this.coordenadaX = coordenadaX;
     }
 
-    public int getCoordneadaY() {
+    public int getCoordenadaY() {
         return coordenadaY;
     }
 
-    public void setCoordneadaY(int coordneadaY) {
-        this.coordenadaY = coordneadaY;
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
     }
 
     public int getCoordenadaZ() {

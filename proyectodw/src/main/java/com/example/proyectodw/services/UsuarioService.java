@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import com.example.proyectodw.DAO.UsuarioRepository;
 import com.example.proyectodw.model.Usuario;
+import com.example.proyectodw.model.Nave;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,14 @@ public class UsuarioService {
     public String deleteUsuarioById(Long id){
         usuarioRepository.deleteById(id);
         return "Usuario eliminado correctamente";
+    }
+
+    public Nave getNaveUsuarioById(Long id) {
+        Usuario usuario = usuarioRepository.findById(id).orElse(null); // Retorna la nave del usuario según su id
+        if(usuario != null)
+            return usuario.getNave();
+        else 
+            return null;
     }
 
 }

@@ -37,9 +37,7 @@ public class ProductoService {
 
             productoEncontrado = productoOpcional.get();
             productoEncontrado.setNombre(producto.getNombre());
-            productoEncontrado.setFactorDemanda(producto.getFactorDemanda());
-            productoEncontrado.setStock(producto.getStock());
-            productoEncontrado.setFactorOferta(producto.getFactorOferta());
+            productoEncontrado.setMetros3(producto.getMetros3());
             productoEncontrado.setColumn(producto.getColumn());
 
             productoRepository.save(productoEncontrado);

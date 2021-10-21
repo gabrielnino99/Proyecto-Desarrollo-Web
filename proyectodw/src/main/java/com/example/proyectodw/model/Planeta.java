@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Planeta {
     @Id
@@ -17,8 +19,10 @@ public class Planeta {
     int plid;
     String nombre;
     @ManyToOne
+    @JsonIgnore
     Estrella estrella;
     @OneToMany(mappedBy="planeta")
+    @JsonIgnore
     List<PlanetaProducto> productos;
 
     public Planeta() {

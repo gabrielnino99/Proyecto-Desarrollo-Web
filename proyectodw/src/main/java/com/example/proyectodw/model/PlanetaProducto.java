@@ -5,11 +5,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class PlanetaProducto {
     @Id
     @GeneratedValue
     Long ID;
+    int factorDemanda;
+    int stock;
+    int factorOferta;
     @ManyToOne
     Planeta planeta;
     @ManyToOne
@@ -18,7 +23,10 @@ public class PlanetaProducto {
     public PlanetaProducto() {
     }
 
-    public PlanetaProducto(Planeta planeta, Producto producto) {
+    public PlanetaProducto(int factorDemanda, int stock, int factorOferta, Planeta planeta, Producto producto) {
+        this.factorDemanda = factorDemanda;
+        this.stock = stock;
+        this.factorOferta = factorOferta;
         this.planeta = planeta;
         this.producto = producto;
     }
@@ -45,6 +53,30 @@ public class PlanetaProducto {
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public int getFactorDemanda() {
+        return factorDemanda;
+    }
+
+    public void setFactorDemanda(int factorDemanda) {
+        this.factorDemanda = factorDemanda;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getFactorOferta() {
+        return factorOferta;
+    }
+
+    public void setFactorOferta(int factorOferta) {
+        this.factorOferta = factorOferta;
     }
 
 

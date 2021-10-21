@@ -2,12 +2,15 @@ package com.example.proyectodw.controller;
 
 import java.util.List;
 
-//import com.example.proyectodw.DAO.PlanetaRepository;
+import com.example.proyectodw.DAO.PlanetaRepository;
 import com.example.proyectodw.model.Planeta;
+import com.example.proyectodw.model.PlanetaProducto;
+import com.example.proyectodw.model.Producto;
 import com.example.proyectodw.services.PlanetaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +38,21 @@ public class PlanetaController {
     }
 
     @GetMapping("/planeta/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public Planeta getPlanetaById(@PathVariable Long id){
         return planetaService.getPlanetaById(id);
+    }
+
+    @GetMapping("/planeta/{id}/productos")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<Producto> getProductosPlanetaById(@PathVariable Long id){
+        return planetaService.getProductosPlanetaById(id);
+    }
+
+    @GetMapping("/planeta/{id}/planetas-productos")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public List<PlanetaProducto> getProductosPlanetasById(@PathVariable Long id){
+        return planetaService.getProductosPlanetasById(id);
     }
 
     @GetMapping("/planetas")

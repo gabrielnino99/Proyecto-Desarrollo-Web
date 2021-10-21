@@ -4,10 +4,12 @@ import java.util.List;
 
 //import com.example.proyectodw.DAO.NaveRepository;
 import com.example.proyectodw.services.NaveService;
+import com.example.proyectodw.model.Estrella;
 import com.example.proyectodw.model.Nave;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,8 +36,15 @@ public class NaveController {
     }
 
     @GetMapping("/nave/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public Nave getNaveById(@PathVariable Long id){
         return naveService.getNaveById(id);
+    }
+
+    @GetMapping("/nave/{id}/estrella")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Estrella getEstrellaNaveById(@PathVariable Long id){
+        return naveService.getEstrellaNaveById(id);
     }
 
     @GetMapping("/naves")
@@ -44,6 +53,7 @@ public class NaveController {
     }
 
     @PutMapping("/updateNave")
+    @CrossOrigin(origins = "http://localhost:4200")
     public Nave updateNave(@RequestBody Nave nave){
         return naveService.updateNave(nave);
     }
