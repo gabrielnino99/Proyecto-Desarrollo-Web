@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Usuario{
     @Id
@@ -24,6 +26,7 @@ public class Usuario{
     @ManyToOne
     Nave nave;
     @OneToMany(mappedBy="usuario")
+    @JsonIgnore
     List<Transaccion> transacciones;
 
     public Usuario() {
@@ -43,7 +46,7 @@ public class Usuario{
     }
 
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
     public void setID(Long ID) {

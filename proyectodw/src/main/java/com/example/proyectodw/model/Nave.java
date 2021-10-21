@@ -9,30 +9,40 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Nave{
     @Id
     @GeneratedValue
     Long ID;
     String nombre;
-    int carga;
+    double carga;
+    double cargaMaxima;
     int velocidad;
     int nid;
     @ManyToOne
     Estrella estrella;
     @OneToMany(mappedBy="nave")
+    @JsonIgnore
+    List<NaveProducto> productos;
+    @OneToMany(mappedBy="nave")
+    @JsonIgnore
     List<Usuario> usuarios;
 
     public Nave() {
         this.usuarios = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
-    public Nave(String nombre, int carga, int velocidad, Estrella estrella, int nid) {
+    public Nave(String nombre, double carga, double cargaMaxima, int velocidad, Estrella estrella, int nid) {
         this.nombre = nombre;
         this.carga = carga;
+        this.cargaMaxima = cargaMaxima;
         this.velocidad = velocidad;
         this.estrella = estrella;
         this.nid = nid;
+        this.productos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
     }
 
@@ -52,11 +62,11 @@ public class Nave{
         this.nombre = nombre;
     }
 
-    public int getCarga() {
+    public double getCarga() {
         return carga;
     }
 
-    public void setCarga(int carga) {
+    public void setCarga(double carga) {
         this.carga = carga;
     }
 
@@ -92,6 +102,21 @@ public class Nave{
         this.nid = nid;
     }
 
+    public double getCargaMaxima() {
+        return cargaMaxima;
+    }
+
+    public void setCargaMaxima(double cargaMaxima) {
+        this.cargaMaxima = cargaMaxima;
+    }
+
+    public List<NaveProducto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<NaveProducto> productos) {
+        this.productos = productos;
+    }
 
 
 }

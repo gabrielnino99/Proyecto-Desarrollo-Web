@@ -6,8 +6,10 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Planeta {
@@ -17,9 +19,11 @@ public class Planeta {
     int plid;
     String nombre;
     @ManyToOne
+    @JsonIgnore
     Estrella estrella;
-    @ManyToMany
-    List<Producto> productos;
+    @OneToMany(mappedBy="planeta")
+    @JsonIgnore
+    List<PlanetaProducto> productos;
 
     public Planeta() {
         this.productos = new ArrayList<>();
@@ -56,11 +60,11 @@ public class Planeta {
         this.estrella = estrella;
     }
 
-    public List<Producto> getProductos() {
+    public List<PlanetaProducto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<PlanetaProducto> productos) {
         this.productos = productos;
     }
 

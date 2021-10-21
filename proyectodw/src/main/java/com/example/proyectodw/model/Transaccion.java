@@ -11,6 +11,7 @@ public class Transaccion{
     @GeneratedValue
     long ID;
     int tid;
+    String tipo;
     int precioTotal;
     @ManyToOne
     Usuario usuario;
@@ -18,12 +19,16 @@ public class Transaccion{
     public Transaccion() {
     }
 
-    public Transaccion(int tid, int precioTotal, Usuario usuario) {
+    public Transaccion(int tid, String tipo, int precioTotal, Usuario usuario) {
         this.tid = tid;
+        this.tipo = tipo;
         this.precioTotal = precioTotal;
         this.usuario = usuario;
     }
 
+    
+
+    
     public long getID() {
         return ID;
     }
@@ -54,5 +59,13 @@ public class Transaccion{
     }
 
     
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 
 }

@@ -6,7 +6,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Producto {
@@ -15,26 +17,30 @@ public class Producto {
     Long ID;
     int prid;
     String nombre;
-    int factorDemanda;
-    int stock;
-    int factorOferta;
     int column;
-    @ManyToMany(mappedBy="productos")
-    List<Planeta> planetas;
+    double metros3; 
+    @OneToMany(mappedBy="producto")
+    @JsonIgnore
+    List<PlanetaProducto> planetas;
+    @OneToMany(mappedBy="producto")
+    @JsonIgnore
+    List<NaveProducto> naves;
 
     public Producto() {
         this.planetas = new ArrayList<>();
+        this.naves = new ArrayList<>();
     }
 
-    public Producto(String nombre, int prid,int factorDemanda, int stock, int factorOferta, int column) {
+    public Producto(String nombre, int prid, int column, double metros3) {
         this.nombre = nombre;
         this.prid = prid;
-        this.factorDemanda = factorDemanda;
-        this.stock = stock;
-        this.factorOferta = factorOferta;
         this.column = column;
+        this.metros3 = metros3;
         this.planetas = new ArrayList<>();
+        this.naves = new ArrayList<>();
     }
+
+    
 
     public Long getID() {
         return ID;
@@ -52,29 +58,6 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public int getFactorDemanda() {
-        return factorDemanda;
-    }
-
-    public void setFactorDemanda(int factorDemanda) {
-        this.factorDemanda = factorDemanda;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public int getFactorOferta() {
-        return factorOferta;
-    }
-
-    public void setFactorOferta(int factorOferta) {
-        this.factorOferta = factorOferta;
-    }
 
     public int getColumn() {
         return column;
@@ -84,11 +67,11 @@ public class Producto {
         this.column = column;
     }
 
-    public List<Planeta> getPlanetas() {
+    public List<PlanetaProducto> getPlanetas() {
         return planetas;
     }
 
-    public void setPlanetas(List<Planeta> planetas) {
+    public void setPlanetas(List<PlanetaProducto> planetas) {
         this.planetas = planetas;
     }
 
@@ -98,6 +81,22 @@ public class Producto {
 
     public void setPrid(int prid) {
         this.prid = prid;
+    }
+
+    public double getMetros3() {
+        return metros3;
+    }
+
+    public void setMetros3(double metros3) {
+        this.metros3 = metros3;
+    }
+
+    public List<NaveProducto> getNaves() {
+        return naves;
+    }
+
+    public void setNaves(List<NaveProducto> naves) {
+        this.naves = naves;
     }
 
 

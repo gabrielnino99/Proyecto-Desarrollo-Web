@@ -6,8 +6,9 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Estrella{
@@ -16,14 +17,17 @@ public class Estrella{
     Long ID;
     String nombre;
     int coordenadaX;
-    int coordneadaY;
+    int coordenadaY;
     int coordenadaZ;
     int eid;
-    @ManyToMany
-    List<AgujeroDeGusano> agujerosDeGusano;
     @OneToMany(mappedBy="estrella")
+    @JsonIgnore
+    List<AgujeroDeGusanoEstrella> agujerosDeGusano;
+    @OneToMany(mappedBy="estrella")
+    @JsonIgnore
     List<Nave> naves;
     @OneToMany(mappedBy="estrella")
+    @JsonIgnore
     List<Planeta> planetas;
 
     public Estrella() {
@@ -32,10 +36,10 @@ public class Estrella{
         this.planetas =  new ArrayList<>();
     }
 
-    public Estrella(String nombre, int coordenadaX, int coordneadaY, int coordenadaZ, int eid) {
+    public Estrella(String nombre, int coordenadaX, int coordenadaY, int coordenadaZ, int eid) {
         this.nombre = nombre;
         this.coordenadaX = coordenadaX;
-        this.coordneadaY = coordneadaY;
+        this.coordenadaY = coordenadaY;
         this.coordenadaZ = coordenadaZ;
         this.eid = eid;
         this.agujerosDeGusano = new ArrayList<>();
@@ -67,12 +71,12 @@ public class Estrella{
         this.coordenadaX = coordenadaX;
     }
 
-    public int getCoordneadaY() {
-        return coordneadaY;
+    public int getCoordenadaY() {
+        return coordenadaY;
     }
 
-    public void setCoordneadaY(int coordneadaY) {
-        this.coordneadaY = coordneadaY;
+    public void setCoordenadaY(int coordenadaY) {
+        this.coordenadaY = coordenadaY;
     }
 
     public int getCoordenadaZ() {
@@ -91,11 +95,11 @@ public class Estrella{
         this.eid = eid;
     }
 
-    public List<AgujeroDeGusano> getAgujerosDeGusano() {
+    public List<AgujeroDeGusanoEstrella> getAgujerosDeGusano() {
         return agujerosDeGusano;
     }
 
-    public void setAgujerosDeGusano(List<AgujeroDeGusano> agujerosDeGusano) {
+    public void setAgujerosDeGusano(List<AgujeroDeGusanoEstrella> agujerosDeGusano) {
         this.agujerosDeGusano = agujerosDeGusano;
     }
 

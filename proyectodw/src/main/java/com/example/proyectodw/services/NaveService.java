@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.proyectodw.DAO.NaveRepository;
+import com.example.proyectodw.model.Estrella;
 import com.example.proyectodw.model.Nave;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,11 @@ public class NaveService {
             naveEncontrada = naveOpcional.get();
             naveEncontrada.setNombre(nave.getNombre());
             naveEncontrada.setCarga(nave.getCarga());
+            naveEncontrada.setCargaMaxima(nave.getCargaMaxima());
             naveEncontrada.setUsuarios(nave.getUsuarios());
             naveEncontrada.setVelocidad(nave.getVelocidad());
             naveEncontrada.setEstrella(nave.getEstrella());
+            naveEncontrada.setNid(nave.getNid());
 
             naveRepository.save(naveEncontrada);
         }
@@ -55,4 +58,11 @@ public class NaveService {
         return "Nave eliminada correctamente";
     }
 
+    public Estrella getEstrellaNaveById(Long id) {
+        Nave nave = naveRepository.findById(id).orElse(null);
+        if(nave != null)
+            return nave.getEstrella();
+        else 
+            return null;
+    }
 }
