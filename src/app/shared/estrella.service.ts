@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { AgujeroDeGusanoEstrella } from "src/app/model/agujero-de-gusano-estrella";
 import { Estrella } from 'src/app/model/estrella';
 import { Planeta } from 'src/app/model/planeta';
 
@@ -43,6 +44,10 @@ export class EstrellaService {
 
   findPlanetasEstrella(id: number) : Observable<Planeta[]>{
     return this.http.get<Planeta[]>("http://localhost:8080/estrella/" + id + "/planetas");
+  }
+
+  findAgujeroDeGusanoEstrella(id: number) : Observable<AgujeroDeGusanoEstrella>{
+    return this.http.get<AgujeroDeGusanoEstrella>("http://localhost:8080/estrella/" + id + "/agujerosDeGusano");
   }
 
   findEstrellasCercanas(id: number) : Observable<Estrella[]>{

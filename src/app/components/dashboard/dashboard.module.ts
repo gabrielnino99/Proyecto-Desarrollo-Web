@@ -11,6 +11,7 @@ import { ComprarProductoComponent } from './Comercio/comprar-producto/comprar-pr
 import { ProductoComponent } from './Comercio/producto/producto.component';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { AgujeroDeGusanoComponent } from './Navegacion/agujero-de-gusano/agujero-de-gusano.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { SharedModule } from '../shared/shared.module';
     PlanetaComponent,
     VenderProductoComponent,
     ComprarProductoComponent,
-    ProductoComponent
+    ProductoComponent,
+    AgujeroDeGusanoComponent
   ],
   imports: [
     CommonModule,

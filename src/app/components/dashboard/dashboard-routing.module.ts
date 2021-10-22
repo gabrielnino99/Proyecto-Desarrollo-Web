@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard.component';
+import { AgujeroDeGusanoComponent } from './Navegacion/agujero-de-gusano/agujero-de-gusano.component';
 import { NavegacionComponent } from './Navegacion/navegacion/navegacion.component';
 import { PlanetaComponent } from './Navegacion/planeta/planeta.component';
 import { ProductoComponent } from './Comercio/producto/producto.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'planetas', component: PlanetaComponent },
       { path: 'usuario/:uid/navegacion/:nid', component: NavegacionComponent },
       {
         path: 'usuario/:uid/navegacion/:nid/estrella/:eid',
@@ -24,6 +26,10 @@ const routes: Routes = [
       {
         path: 'usuario/:uid/navegacion/:nid/estrella/:eid/planeta/:plid',
         component: ProductoComponent,
+      },
+      {
+        path: 'usuario/:uid/navegacion/:nid/estrella/:eid/agujeroDeGusano/:aid',
+        component: AgujeroDeGusanoComponent,
       },
       {
         path: 'usuario/:uid/navegacion/:nid/estrella/:eid/planeta/:plid/planeta-producto/:prid/comprar/:ppid',

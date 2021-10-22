@@ -49,21 +49,36 @@ export class NavegacionComponent implements OnInit {
     this.estrellaService.findEstrellasCercanas(this.selectedEstrella.id).subscribe(
       estrellas => this.estrellas = estrellas
     );
+
   
   });
     
   }
 
   seleccionarEstrella(estrella: Estrella){
+    //Calcular distancia en KM
+    let distancia = Math.sqrt(
+      Math.pow(estrella.coordenadaX - this.selectedEstrella.coordenadaX,2)
+      + Math.pow(estrella.coordenadaY - this.selectedEstrella.coordenadaY,2)
+      + Math.pow(estrella.coordenadaZ - this.selectedEstrella.coordenadaZ,2)
+      ) * (9.461 * Math.exp(12));
+    //Estrella donde esta la nave
     this.selectedEstrella = estrella;
     this.nave.estrella = this.selectedEstrella;
+    //Estrellas más cercanas
     this.estrellaService.findEstrellasCercanas(this.selectedEstrella.id).subscribe(
       estrellas => this.estrellas = estrellas
     );
+    //Actualizar Nave
     this.naveService.updateNave(new Nave(
       this.nave.nombre, this.nave.carga, 
       this.nave.cargaMaxima, this.nave.velocidad, this.nave.nid, this.nave.id, this.nave.estrella
     )).subscribe();
+    //Actualizar Usuario con el tiempo medido en dias
+    this.usuario.tiempoDeJuego =  this.usuario.tiempoDeJuego + ((distancia / this.nave.velocidad) * (1 / 86400) );
+    this.usuarioService.updateUsuario(new Usuario(
+      this.usuario.id, this.usuario.userName, this.usuario.password, this.usuario.rol, this.usuario.email,
+       this.usuario.credito, this.usuario.tiempoDeJuego, this.usuario.id, this.usuario.nave)).subscribe(); 
   }
 
 }

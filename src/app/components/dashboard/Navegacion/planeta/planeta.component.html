@@ -31,8 +31,10 @@
                     <img class="nave" src="./assets/imagenes/nave_caza.png">
                 </td>
                 <td></td>
-                <td *ngIf="agujerosDeGusano.length > 0">
-                    <img class="planeta" src="./assets/imagenes/hoyo_negro.png">
+                <td *ngIf="agujeroDeGusanoEstrella !== null">
+                    <a [routerLink]="['agujeroDeGusano', agujeroDeGusanoEstrella.id]" routerLinkActive="router-link-active">
+                        <img class="planeta" src="./assets/imagenes/hoyo_negro.png">
+                    </a>
                 </td>
             </tr>
             <tr>
