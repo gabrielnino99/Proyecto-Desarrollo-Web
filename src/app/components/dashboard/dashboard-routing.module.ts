@@ -16,7 +16,6 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'planetas', component: PlanetaComponent },
       { path: 'usuario/:uid/navegacion/:nid', component: NavegacionComponent },
       {
         path: 'usuario/:uid/navegacion/:nid/estrella/:eid',

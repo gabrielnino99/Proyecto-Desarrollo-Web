@@ -17,9 +17,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <!-- Header -->
 <div class=" w3-black w3-center" style="padding:110px 16px">
     <h1 class="w3-margin w3-jumbo">Bienvenido a Comerciante Espacial </h1>
-  <p class="w3-xlarge"></p>
+  <p class="w3-xlarge">Oprime el botón "Comenzar" para iniciar el viaje espacial</p>
   <div style="height: 40px;"></div>
-  <button mat-raised-button color="basic" >Comenzar</button>
+  <button (click)="redirigir()" mat-raised-button color="basic" >Comenzar</button>
 
 </div>
 
@@ -28,11 +28,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
   <div class="w3-content">
     <div class="w3-twothird">
       <h1>¿Cómo puedes jugar?</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+      <h5 class="w3-padding-32">Cuando te encuentres en la pantalla de navegación, puedes clickear sobre las diferentes estrellas en pantalla para obtener información acerca de dicha estrella. Si deseas visitar una estrella debes dar click en el botón "Visitar Estrella". En caso de querer visitar una estrella diferente, debes oprimir "Manejar Nave".</h5>
 
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p class="w3-text-grey">Recuerda que no todas las estrellas poseen planetas por visitar!</p>
     </div>
 
     <div class="w3-third w3-center">
@@ -45,20 +43,18 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
 <div class="w3-row-padding w3-light-grey w3-padding-64 w3-container">
   <div class="w3-content">
     <div class="w3-third w3-center">
-      <i class="fa fa-coffee w3-padding-64 w3-text-red w3-margin-right"></i>
+        <img src="../../../../assets/comercio.jpg" width="90%" alt="comercio">
     </div>
 
     <div class="w3-twothird">
-      <h1>Lorem Ipsum</h1>
-      <h5 class="w3-padding-32">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h5>
+      <h1>En caso de que quieras comprar y vender...</h1>
+      <h5 class="w3-padding-32">Para poder efectuar una transacción debes visitar una estrella que contenga planetas en los cuales puedes comprar o vender productos.</h5>
 
-      <p class="w3-text-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-        laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <p class="w3-text-grey">Una vez te encuentres en un planeta, podrás seleccionar un producto de una lista que contiene los productos disponibles por planeta con su respectivo factor de oferta, factor de demanda y stock disponible. Una vez seleccionado el producto, puedes comprar o vender la cantidad que ingreses, siempre y cuando tengas el dinero o el producto suficiente para realizar esta acción.</p>
     </div>
   </div>
 </div>
 
 <div class="w3-container w3-black w3-center w3-opacity w3-padding-64">
-    <h1 class="w3-margin w3-xlarge">Quote of the day: live life</h1>
+    <h1 class="w3-margin w3-xlarge">¡Buena suerte viajero!</h1>
 </div>
