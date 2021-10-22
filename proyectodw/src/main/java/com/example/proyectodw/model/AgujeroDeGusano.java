@@ -8,13 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class AgujeroDeGusano{
     @Id
     @GeneratedValue
-    long ID;
+    Long ID;
     int aid;
     @OneToMany(mappedBy="agujeroDeGusano")
+    @JsonIgnore
     List<AgujeroDeGusanoEstrella> estrellas;
 
     public AgujeroDeGusano() {
@@ -26,7 +29,7 @@ public class AgujeroDeGusano{
         estrellas = new ArrayList<>();
     }
 
-    public long getID() {
+    public Long getID() {
         return ID;
     }
 
@@ -45,6 +48,10 @@ public class AgujeroDeGusano{
 
     public void setAid(int aid) {
         this.aid = aid;
+    }
+
+    public void setID(Long ID) {
+        this.ID = ID;
     }
 
     

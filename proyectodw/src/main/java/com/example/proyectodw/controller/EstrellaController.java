@@ -3,6 +3,7 @@ package com.example.proyectodw.controller;
 import java.util.List;
 
 import com.example.proyectodw.DAO.EstrellaRepository;
+import com.example.proyectodw.model.AgujeroDeGusanoEstrella;
 import com.example.proyectodw.model.Estrella;
 import com.example.proyectodw.model.Planeta;
 import com.example.proyectodw.services.EstrellaService;
@@ -45,6 +46,12 @@ public class EstrellaController {
     @CrossOrigin(origins = "http://localhost:4200")
     public List<Planeta> getPlanetasEstrellaById(@PathVariable Long id){
         return estrellaService.getPlanetasEstrellaById(id);
+    }
+
+    @GetMapping("/estrella/{id}/agujerosDeGusano")
+    @CrossOrigin(origins = "http://localhost:4200")
+    public AgujeroDeGusanoEstrella getAgujeroDeGusanoEstrellaEstrellaById(@PathVariable Long id){
+        return estrellaService.getAgujeroDeGusanoEstrellaEstrellaById(id);
     }
 
     @GetMapping("/estrellas")

@@ -8,6 +8,7 @@ import com.example.proyectodw.services.AgujeroDeGusanoEstrellaService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,6 +35,7 @@ public class AgujeroDeGusanoEstrellaController {
     }
 
     @GetMapping("/agujeroDeGusanoEstrella/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public AgujeroDeGusanoEstrella getAgujeroDeGusanoEstrellaById(@PathVariable Long id){
         return agujeroDeGusanoEstrellaService.getAgujeroDeGusanoEstrellaById(id);
     }

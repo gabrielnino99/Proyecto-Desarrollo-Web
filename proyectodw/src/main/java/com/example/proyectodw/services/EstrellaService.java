@@ -4,15 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.proyectodw.DAO.AgujeroDeGusanoEstrellaRepository;
 import com.example.proyectodw.DAO.EstrellaRepository;
+import com.example.proyectodw.model.AgujeroDeGusanoEstrella;
 import com.example.proyectodw.model.Estrella;
-import com.example.proyectodw.model.Planeta;
+import com.example.proyectodw.model.Planeta; 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EstrellaService {
+
+    @Autowired
+    private AgujeroDeGusanoEstrellaRepository agujeroDeGusanoEstrellaRepository;
+
     @Autowired
     private EstrellaRepository estrellaRepository;
 
@@ -95,6 +101,31 @@ public class EstrellaService {
         Estrella estrella = estrellaRepository.findById(id).orElse(null);
         if(estrella != null)
             return estrella.getPlanetas();
+        else
+            return null;
+    }
+
+    public AgujeroDeGusanoEstrella getAgujeroDeGusanoEstrellaEstrellaById(Long id){
+        Estrella estrella = estrellaRepository.findById(id).orElse(null);
+        if(estrella != null){
+            List<AgujeroDeGusanoEstrella> agujeroDeGusanoEstrellas  = estrella.getAgujerosDeGusano();
+            if(agujeroDeGusanoEstrellas.size() > 0){
+                AgujeroDeGusanoEstrella base = 
+                this.agujeroDeGusanoEstrellaRepository.findById(agujeroDeGusanoEstrellas.get(0).getID()).orElse(null);
+                if(base != null){
+                    if(base.getPolo().equals("A")){
+                        return this.agujeroDeGusanoEstrellaRepository.findById(base.getID() + 1).orElse(null);
+                    }
+                    else{
+                        return this.agujeroDeGusanoEstrellaRepository.findById(base.getID() - 1).orElse(null);
+                    }
+                }
+                else
+                    return null;
+            }
+            else
+                return null;
+        }
         else
             return null;
     }

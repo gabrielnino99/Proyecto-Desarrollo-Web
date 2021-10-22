@@ -10,6 +10,7 @@ public class AgujeroDeGusanoEstrella {
     @Id
     @GeneratedValue
     long ID;
+    String polo;
     @ManyToOne
     AgujeroDeGusano agujeroDeGusano;
     @ManyToOne
@@ -18,7 +19,8 @@ public class AgujeroDeGusanoEstrella {
     public AgujeroDeGusanoEstrella() {
     }
 
-    public AgujeroDeGusanoEstrella(AgujeroDeGusano agujeroDeGusano, Estrella estrella) {
+    public AgujeroDeGusanoEstrella(String polo, AgujeroDeGusano agujeroDeGusano, Estrella estrella) {
+        this.polo = polo;
         this.agujeroDeGusano = agujeroDeGusano;
         this.estrella = estrella;
     }
@@ -45,6 +47,14 @@ public class AgujeroDeGusanoEstrella {
 
     public void setEstrella(Estrella estrella) {
         this.estrella = estrella;
+    }
+
+    public String getPolo() {
+        return polo;
+    }
+
+    public void setPolo(String polo) {
+        this.polo = polo;
     }
 
 

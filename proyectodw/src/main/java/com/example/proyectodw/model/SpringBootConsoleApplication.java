@@ -16,22 +16,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
-    
+    /*
     public static final int NUM_ESTRELLAS = 40000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    
+    */
 
     //DATOS DE PRUEBA SENCILLA
-    /*
+    
     public static final int NUM_ESTRELLAS = 50;
     public static final int NUM_PRODUCTOS = 5;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 10;
     public static final int NUM_EQUIPOS = 10;
-    */
+    
 
     @Autowired
     AgujeroDeGusanoRepository agujeroDeGusanoRepository;
@@ -144,9 +144,9 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
                 eidB = randomEstrella.nextInt(NUM_ESTRELLAS);
             }while(eidA == eidB);
             Estrella estrellaB = estrellaRepository.findByEid(eidB);
-            AgujeroDeGusanoEstrella agujeroEstrellaA = new AgujeroDeGusanoEstrella(agujero,estrellaA);
+            AgujeroDeGusanoEstrella agujeroEstrellaA = new AgujeroDeGusanoEstrella("A", agujero,estrellaA);
             agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaA);
-            AgujeroDeGusanoEstrella agujeroEstrellaB = new AgujeroDeGusanoEstrella(agujero,estrellaB);
+            AgujeroDeGusanoEstrella agujeroEstrellaB = new AgujeroDeGusanoEstrella("B", agujero,estrellaB);
             agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaB);
         }
         //Inserta los productos
