@@ -16,21 +16,25 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
-    /*
+    
     public static final int NUM_ESTRELLAS = 40000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    */
-
-    //DATOS DE PRUEBA SENCILLA
     
-    public static final int NUM_ESTRELLAS = 50;
-    public static final int NUM_PRODUCTOS = 5;
+
+    //DATOS DE PRUEBA
+    //Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
+    //40 mil estrellas tardarian 120 minutos, es decir, 2 horas
+    
+    /*
+    public static final int NUM_ESTRELLAS = 1000;
+    public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
-    public static final int NUM_USUARIOS = 10;
+    public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
+    */
     
 
     @Autowired
@@ -76,16 +80,8 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         
 
         LOG.info("EXECUTING : command line runner");
-
-        //Inserta los Agujeros de Gusano Bandera
-        LOG.info("INSERTANDO: Agujeros de Gusano que seran la quinta parte de las Estrellas");
-        int num_agujeros = NUM_ESTRELLAS / 5;
-        for(int i=0;i<num_agujeros;i++){
-            AgujeroDeGusano agujero = new AgujeroDeGusano(i);
-            agujeroDeGusanoRepository.save(agujero);
-        }
-        //Inserta las estrellas
-        LOG.info("INSERTANDO: Estrellas con 1% de probabilidad de tener entre 1 y 3 Planetas");
+        //Inserta los Datos de prueba
+        LOG.info("INSERTANDO: Estrella Semilla, Usuario Prueba y Nave Prueba");
         Estrella semilla = new Estrella("alpha", 0,0,0,0);
         estrellaRepository.save(semilla);
         int incremento = 0;
@@ -98,6 +94,30 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             planetaRepository.save(planeta);
             contPlaneta++;
         }
+
+        //Nave de prueba FrontEnd
+        Estrella estrella1 = estrellaRepository.findByEid(0);
+        if(estrella1 != null){
+            Nave nave = new Nave("Prometeo", 0.0, 120.0, 300, estrella1, 21);
+            naveRepository.save(nave);
+        }
+
+         //Usuario de prueba FrontEnd
+         Nave miNave = naveRepository.findByNid(21);
+         if(miNave != null){
+            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 1000000, 0, miNave);
+            usuarioRepository.save(usuario);
+         }
+
+        //Inserta los Agujeros de Gusano Bandera
+        LOG.info("INSERTANDO: Agujeros de Gusano que seran la quinta parte de las Estrellas");
+        int num_agujeros = NUM_ESTRELLAS / 5;
+        for(int i=0;i<num_agujeros;i++){
+            AgujeroDeGusano agujero = new AgujeroDeGusano(i);
+            agujeroDeGusanoRepository.save(agujero);
+        }
+        //Inserta las estrellas
+        LOG.info("INSERTANDO: Estrellas con 1% de probabilidad de tener entre 1 y 3 Planetas");
        
         int contEstrella = 1;
         while(contEstrella < NUM_ESTRELLAS){
@@ -190,12 +210,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
                 naveRepository.save(nave);
             }
         }
-        //Nave de prueba FrontEnd
-        Estrella estrella = estrellaRepository.findByEid(0);
-        if(estrella != null){
-            Nave nave = new Nave("Prometeo", 0.0, 120.0, 300, estrella, 21);
-            naveRepository.save(nave);
-        }
+    
          //Inserta los Usuarios
          LOG.info("INSERTANDO: Usuarios");
          int usuariosXEquipo = NUM_USUARIOS / NUM_EQUIPOS;
@@ -218,11 +233,6 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
             } 
              
          }
-         //Usuario de prueba FrontEnd
-         Nave miNave = naveRepository.findByNid(21);
-         if(miNave != null){
-            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 1000000, 0, miNave);
-            usuarioRepository.save(usuario);
-         }
+        
     }
 }
