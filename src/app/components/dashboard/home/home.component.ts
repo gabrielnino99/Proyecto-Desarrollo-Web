@@ -12,6 +12,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {}
 
   redirigir() {
-    this._router.navigate(['/dashboard/usuario/148/navegacion/137']);
+    this._router.navigate(['/dashboard/usuario/5/navegacion/4']);
   }
 }
