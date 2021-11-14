@@ -11,30 +11,32 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
 
 
 @SpringBootApplication
+@Profile("develop")
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
-    
+    /*
     public static final int NUM_ESTRELLAS = 40000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    
+    */
 
     //DATOS DE PRUEBA
     //Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
     //40 mil estrellas tardarian 120 minutos, es decir, 2 horas
     
-    /*
+    
     public static final int NUM_ESTRELLAS = 1000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    */
+    
     
 
     @Autowired

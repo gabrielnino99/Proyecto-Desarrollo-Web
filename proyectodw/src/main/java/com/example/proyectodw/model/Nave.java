@@ -34,7 +34,7 @@ public class Nave{
         this.usuarios = new ArrayList<>();
         this.productos = new ArrayList<>();
     }
-
+    
     public Nave(String nombre, double carga, double cargaMaxima, int velocidad, Estrella estrella, int nid) {
         this.nombre = nombre;
         this.carga = carga;
@@ -44,6 +44,18 @@ public class Nave{
         this.nid = nid;
         this.productos = new ArrayList<>();
         this.usuarios = new ArrayList<>();
+    }
+
+    public Nave(Long ID, String nombre, double carga, double cargaMaxima, int velocidad, int nid, Estrella estrella) {
+        this.ID = ID;
+        this.nombre = nombre;
+        this.carga = carga;
+        this.cargaMaxima = cargaMaxima;
+        this.velocidad = velocidad;
+        this.nid = nid;
+        this.estrella = estrella;
+        this.usuarios = new ArrayList<>();
+        this.productos = new ArrayList<>();
     }
 
     public Long getID() {

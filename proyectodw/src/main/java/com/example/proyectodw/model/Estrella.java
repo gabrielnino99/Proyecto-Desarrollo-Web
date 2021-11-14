@@ -35,8 +35,20 @@ public class Estrella{
         this.naves = new ArrayList<>();
         this.planetas =  new ArrayList<>();
     }
-
+    
     public Estrella(String nombre, int coordenadaX, int coordenadaY, int coordenadaZ, int eid) {
+        this.nombre = nombre;
+        this.coordenadaX = coordenadaX;
+        this.coordenadaY = coordenadaY;
+        this.coordenadaZ = coordenadaZ;
+        this.eid = eid;
+        this.agujerosDeGusano = new ArrayList<>();
+        this.naves = new ArrayList<>();
+        planetas =  new ArrayList<>();
+    }
+
+    public Estrella(Long ID, String nombre, int coordenadaX, int coordenadaY, int coordenadaZ, int eid) {
+        this.ID = ID;
         this.nombre = nombre;
         this.coordenadaX = coordenadaX;
         this.coordenadaY = coordenadaY;

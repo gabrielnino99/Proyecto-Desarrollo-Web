@@ -45,6 +45,19 @@ public class Usuario{
         this.transacciones = new ArrayList<>();
     }
 
+    public Usuario(Long ID, int uid, String userName, String password, String rol, String email, int credito, int tiempoDeJuego, Nave nave) {
+        this.ID = ID;
+        this.uid = uid;
+        this.userName = userName;
+        this.password = password;
+        this.rol = rol;
+        this.email = email;
+        this.credito = credito;
+        this.tiempoDeJuego = tiempoDeJuego;
+        this.nave = nave;
+        this.transacciones = new ArrayList<>();
+    }
+
 
     public Long getID() {
         return ID;

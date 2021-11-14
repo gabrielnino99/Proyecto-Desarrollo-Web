@@ -24,7 +24,14 @@ public class AgujeroDeGusano{
         estrellas = new ArrayList<>();
     }
 
+
     public AgujeroDeGusano(int aid) {
+        this.aid = aid;
+        estrellas = new ArrayList<>();
+    }
+
+    public AgujeroDeGusano(Long ID, int aid) {
+        this.ID = ID;
         this.aid = aid;
         estrellas = new ArrayList<>();
     }

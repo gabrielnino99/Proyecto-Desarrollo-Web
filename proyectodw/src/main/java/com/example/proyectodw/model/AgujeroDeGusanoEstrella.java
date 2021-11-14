@@ -25,6 +25,13 @@ public class AgujeroDeGusanoEstrella {
         this.estrella = estrella;
     }
 
+    public AgujeroDeGusanoEstrella(long ID, String polo, AgujeroDeGusano agujeroDeGusano, Estrella estrella) {
+        this.ID = ID;
+        this.polo = polo;
+        this.agujeroDeGusano = agujeroDeGusano;
+        this.estrella = estrella;
+    }
+
     public long getID() {
         return ID;
     }

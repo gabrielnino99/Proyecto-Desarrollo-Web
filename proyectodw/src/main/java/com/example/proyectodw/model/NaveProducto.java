@@ -29,6 +29,13 @@ public class NaveProducto {
         this.producto = producto;
     }
 
+    public NaveProducto(Long ID, int cantidad, Nave nave, Producto producto) {
+        this.ID = ID;
+        this.cantidad = cantidad;
+        this.nave = nave;
+        this.producto = producto;
+    }
+
     
 
     public Long getID() {

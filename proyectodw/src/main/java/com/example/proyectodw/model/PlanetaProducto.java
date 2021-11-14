@@ -31,6 +31,17 @@ public class PlanetaProducto {
         this.producto = producto;
     }
 
+    public PlanetaProducto(Long ID, int factorDemanda, int stock, int factorOferta, Planeta planeta, Producto producto) {
+        this.ID = ID;
+        this.factorDemanda = factorDemanda;
+        this.stock = stock;
+        this.factorOferta = factorOferta;
+        this.planeta = planeta;
+        this.producto = producto;
+    }
+
+
+
     public Long getID() {
         return ID;
     }

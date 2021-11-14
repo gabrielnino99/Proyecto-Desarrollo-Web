@@ -40,6 +40,16 @@ public class Producto {
         this.naves = new ArrayList<>();
     }
 
+    public Producto(Long ID, int prid, String nombre, int column, double metros3) {
+        this.ID = ID;
+        this.prid = prid;
+        this.nombre = nombre;
+        this.column = column;
+        this.metros3 = metros3;
+        this.planetas = new ArrayList<>();
+        this.naves = new ArrayList<>();
+    }
+
     
 
     public Long getID() {

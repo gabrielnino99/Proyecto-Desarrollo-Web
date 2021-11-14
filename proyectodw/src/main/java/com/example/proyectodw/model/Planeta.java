@@ -36,6 +36,14 @@ public class Planeta {
         this.productos = new ArrayList<>();
     }
 
+    public Planeta(Long ID, int plid, String nombre, Estrella estrella) {
+        this.ID = ID;
+        this.plid = plid;
+        this.nombre = nombre;
+        this.estrella = estrella;
+        this.productos = new ArrayList<>();
+    }
+
     public Long getID() {
         return ID;
     }
