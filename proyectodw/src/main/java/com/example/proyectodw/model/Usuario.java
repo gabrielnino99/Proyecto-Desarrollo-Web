@@ -17,7 +17,7 @@ public class Usuario{
     @GeneratedValue
     Long ID;
     int uid;
-    String userName;
+    String username;
     String password;
     String rol;
     String email;
@@ -33,9 +33,9 @@ public class Usuario{
         this.transacciones = new ArrayList<>();
     }
 
-    public Usuario(int uid, String userName, String password, String rol, String email, int credito, int tiempoDeJuego, Nave nave) {
+    public Usuario(int uid, String username, String password, String rol, String email, int credito, int tiempoDeJuego, Nave nave) {
         this.uid = uid;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.rol = rol;
         this.email = email;
@@ -54,12 +54,12 @@ public class Usuario{
     }
 
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
     
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

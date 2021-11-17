@@ -37,7 +37,7 @@ public class UsuarioService {
         if (usuarioOpcional.isPresent()) {
 
             usuarioEncontrado = usuarioOpcional.get();
-            usuarioEncontrado.setUserName(usuario.getUserName());
+            usuarioEncontrado.setUserName(usuario.getUsername());
             usuarioEncontrado.setEmail(usuario.getEmail());
             usuarioEncontrado.setPassword(usuario.getPassword()); // No se si incluir acá:
             usuarioEncontrado.setRol(usuario.getRol()); // Credito, Transacciones, Rol, Tiempo

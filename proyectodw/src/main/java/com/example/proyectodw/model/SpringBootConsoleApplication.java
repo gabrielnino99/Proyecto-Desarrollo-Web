@@ -11,31 +11,33 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication
 public class SpringBootConsoleApplication implements CommandLineRunner{
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
     
-    public static final int NUM_ESTRELLAS = 40000;
-    public static final int NUM_PRODUCTOS = 500;
-    public static final int NUM_NAVES = 20;
-    public static final int NUM_USUARIOS = 100;
-    public static final int NUM_EQUIPOS = 10;
+    // public static final int NUM_ESTRELLAS = 40000;
+    // public static final int NUM_PRODUCTOS = 500;
+    // public static final int NUM_NAVES = 20;
+    // public static final int NUM_USUARIOS = 100;
+    // public static final int NUM_EQUIPOS = 10;
     
 
     //DATOS DE PRUEBA
     //Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
     //40 mil estrellas tardarian 120 minutos, es decir, 2 horas
     
-    /*
+    
     public static final int NUM_ESTRELLAS = 1000;
     public static final int NUM_PRODUCTOS = 500;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    */
     
+    @Autowired
+    private PasswordEncoder encoder;
 
     @Autowired
     AgujeroDeGusanoRepository agujeroDeGusanoRepository;
@@ -98,15 +100,27 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         //Nave de prueba FrontEnd
         Estrella estrella1 = estrellaRepository.findByEid(0);
         if(estrella1 != null){
-            Nave nave = new Nave("Prometeo", 0.0, 120.0, 300, estrella1, 21);
+            Nave nave = new Nave("Prometeo", 0.0, 150.0, 200, estrella1, 21);
             naveRepository.save(nave);
+        }
+
+        Estrella estrella2 = estrellaRepository.findByEid(0);
+        if(estrella2 != null){
+            Nave nave2 = new Nave("Nexus", 0.0, 120.0, 300, estrella2, 22);
+            naveRepository.save(nave2);
         }
 
          //Usuario de prueba FrontEnd
          Nave miNave = naveRepository.findByNid(21);
          if(miNave != null){
-            Usuario usuario = new Usuario(11,"Nova", "1", "capitan", "nova@gmail.com", 1000000, 0, miNave);
+            Usuario usuario = new Usuario(11,"Nova", encoder.encode("1"), "capitan", "nova@gmail.com", 1000000, 0, miNave);
             usuarioRepository.save(usuario);
+         }
+
+         Nave miNave2 = naveRepository.findByNid(22);
+         if(miNave != null){
+            Usuario usuario2 = new Usuario(12,"Prometeo", encoder.encode("password"), "comerciante", "gabriel@gmail.com", 1000000, 0, miNave2);
+            usuarioRepository.save(usuario2);
          }
 
         //Inserta los Agujeros de Gusano Bandera
