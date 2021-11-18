@@ -20,48 +20,48 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+// @RequestMapping("/starship")
 public class NaveController {
-    
+
     @Autowired
     private NaveService naveService;
 
     @PostMapping("/addNave")
-    public Nave addNave(@RequestBody Nave nave){
+    public Nave addNave(@RequestBody Nave nave) {
         return naveService.crearNave(nave);
     }
 
     @PostMapping("/addNaves")
-    public List<Nave> addNaves(@RequestBody List<Nave> naves){
+    public List<Nave> addNaves(@RequestBody List<Nave> naves) {
         return naveService.crearNaves(naves);
     }
 
     @GetMapping("/nave/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Nave getNaveById(@PathVariable Long id){
+    public Nave getNaveById(@PathVariable Long id) {
         return naveService.getNaveById(id);
     }
 
     @GetMapping("/nave/{id}/estrella")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Estrella getEstrellaNaveById(@PathVariable Long id){
+    public Estrella getEstrellaNaveById(@PathVariable Long id) {
         return naveService.getEstrellaNaveById(id);
     }
 
     @GetMapping("/naves")
-    public List<Nave> getAllNaves(){
+    public List<Nave> getAllNaves() {
         return naveService.getNaves();
     }
 
     @PutMapping("/updateNave")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Nave updateNave(@RequestBody Nave nave){
+    public Nave updateNave(@RequestBody Nave nave) {
         return naveService.updateNave(nave);
     }
 
     @DeleteMapping("/nave/{id}")
-    public String deleteNave(@PathVariable Long id){
+    public String deleteNave(@PathVariable Long id) {
         return naveService.deleteNaveById(id);
     }
-
 
 }

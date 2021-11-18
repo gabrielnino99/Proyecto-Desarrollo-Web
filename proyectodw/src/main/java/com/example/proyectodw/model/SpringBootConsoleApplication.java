@@ -13,29 +13,26 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-
 @SpringBootApplication
-public class SpringBootConsoleApplication implements CommandLineRunner{
+public class SpringBootConsoleApplication implements CommandLineRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
-    
+
     // public static final int NUM_ESTRELLAS = 40000;
     // public static final int NUM_PRODUCTOS = 500;
     // public static final int NUM_NAVES = 20;
     // public static final int NUM_USUARIOS = 100;
     // public static final int NUM_EQUIPOS = 10;
-    
 
-    //DATOS DE PRUEBA
-    //Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
-    //40 mil estrellas tardarian 120 minutos, es decir, 2 horas
-    
-    
-    public static final int NUM_ESTRELLAS = 1000;
-    public static final int NUM_PRODUCTOS = 500;
+    // DATOS DE PRUEBA
+    // Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
+    // 40 mil estrellas tardarian 120 minutos, es decir, 2 horas
+
+    public static final int NUM_ESTRELLAS = 500;
+    public static final int NUM_PRODUCTOS = 300;
     public static final int NUM_NAVES = 20;
     public static final int NUM_USUARIOS = 100;
     public static final int NUM_EQUIPOS = 10;
-    
+
     @Autowired
     private PasswordEncoder encoder;
 
@@ -62,7 +59,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
 
     @Autowired
     UsuarioRepository usuarioRepository;
- 
+
     @Override
     @Transactional
     public void run(String... args) {
@@ -74,179 +71,186 @@ public class SpringBootConsoleApplication implements CommandLineRunner{
         Random randomProducto = new Random(123);
         Random randomNave = new Random(456);
         Random randomUsuario = new Random(789);
-        RandomStringGenerator randomGenEstrella = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomEstrella::nextInt).build();
-        RandomStringGenerator randomGenPlaneta = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomPlaneta::nextInt).build();
-        RandomStringGenerator randomGenProducto = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomProducto::nextInt).build();
-        RandomStringGenerator randomGenNave = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomNave::nextInt).build();
-        RandomStringGenerator randomGenUsuario = new RandomStringGenerator.Builder().withinRange('a','z').usingRandom(randomUsuario::nextInt).build();
-        
+        RandomStringGenerator randomGenEstrella = new RandomStringGenerator.Builder().withinRange('a', 'z')
+                .usingRandom(randomEstrella::nextInt).build();
+        RandomStringGenerator randomGenPlaneta = new RandomStringGenerator.Builder().withinRange('a', 'z')
+                .usingRandom(randomPlaneta::nextInt).build();
+        RandomStringGenerator randomGenProducto = new RandomStringGenerator.Builder().withinRange('a', 'z')
+                .usingRandom(randomProducto::nextInt).build();
+        RandomStringGenerator randomGenNave = new RandomStringGenerator.Builder().withinRange('a', 'z')
+                .usingRandom(randomNave::nextInt).build();
+        RandomStringGenerator randomGenUsuario = new RandomStringGenerator.Builder().withinRange('a', 'z')
+                .usingRandom(randomUsuario::nextInt).build();
 
         LOG.info("EXECUTING : command line runner");
-        //Inserta los Datos de prueba
+        // Inserta los Datos de prueba
         LOG.info("INSERTANDO: Estrella Semilla, Usuario Prueba y Nave Prueba");
-        Estrella semilla = new Estrella("alpha", 0,0,0,0);
+        Estrella semilla = new Estrella("alpha", 0, 0, 0, 0);
         estrellaRepository.save(semilla);
         int incremento = 0;
         int contPlaneta = 0;
-        //Temporal
+        // Temporal
         int numPlanetast = randomPlaneta.nextInt(3);
-        for(int k=0;k<numPlanetast+1;k++){
-            String nombrePlaneta = randomGenPlaneta.generate(7,20);
+        for (int k = 0; k < numPlanetast + 1; k++) {
+            String nombrePlaneta = randomGenPlaneta.generate(7, 20);
             Planeta planeta = new Planeta(nombrePlaneta, contPlaneta, semilla);
             planetaRepository.save(planeta);
             contPlaneta++;
         }
 
-        //Nave de prueba FrontEnd
+        // Nave de prueba FrontEnd
         Estrella estrella1 = estrellaRepository.findByEid(0);
-        if(estrella1 != null){
+        if (estrella1 != null) {
             Nave nave = new Nave("Prometeo", 0.0, 150.0, 200, estrella1, 21);
             naveRepository.save(nave);
         }
 
         Estrella estrella2 = estrellaRepository.findByEid(0);
-        if(estrella2 != null){
+        if (estrella2 != null) {
             Nave nave2 = new Nave("Nexus", 0.0, 120.0, 300, estrella2, 22);
             naveRepository.save(nave2);
         }
 
-         //Usuario de prueba FrontEnd
-         Nave miNave = naveRepository.findByNid(21);
-         if(miNave != null){
-            Usuario usuario = new Usuario(11,"Nova", encoder.encode("1"), "capitan", "nova@gmail.com", 1000000, 0, miNave);
+        // Usuario de prueba FrontEnd
+        Nave miNave = naveRepository.findByNid(21);
+        if (miNave != null) {
+            Usuario usuario = new Usuario(11, "Nova", encoder.encode("1"), "ROLE_CAPITAN", "nova@gmail.com", 1000000, 0,
+                    miNave);
             usuarioRepository.save(usuario);
-         }
+        }
 
-         Nave miNave2 = naveRepository.findByNid(22);
-         if(miNave != null){
-            Usuario usuario2 = new Usuario(12,"Prometeo", encoder.encode("password"), "comerciante", "gabriel@gmail.com", 1000000, 0, miNave2);
+        Nave miNave2 = naveRepository.findByNid(22);
+        if (miNave != null) {
+            Usuario usuario2 = new Usuario(12, "Prometeo", encoder.encode("password"), "ROLE_COMERCIANTE",
+                    "gabriel@gmail.com", 1000000, 0, miNave2);
             usuarioRepository.save(usuario2);
-         }
+        }
 
-        //Inserta los Agujeros de Gusano Bandera
+        // Inserta los Agujeros de Gusano Bandera
         LOG.info("INSERTANDO: Agujeros de Gusano que seran la quinta parte de las Estrellas");
         int num_agujeros = NUM_ESTRELLAS / 5;
-        for(int i=0;i<num_agujeros;i++){
+        for (int i = 0; i < num_agujeros; i++) {
             AgujeroDeGusano agujero = new AgujeroDeGusano(i);
             agujeroDeGusanoRepository.save(agujero);
         }
-        //Inserta las estrellas
+        // Inserta las estrellas
         LOG.info("INSERTANDO: Estrellas con 1% de probabilidad de tener entre 1 y 3 Planetas");
-       
+
         int contEstrella = 1;
-        while(contEstrella < NUM_ESTRELLAS){
+        while (contEstrella < NUM_ESTRELLAS) {
             int incremento2 = 10;
-            for(int j=0;j<contEstrella*3;j++){
-                String nombreEstrella = randomGenEstrella.generate(5,15);
+            for (int j = 0; j < contEstrella * 3; j++) {
+                String nombreEstrella = randomGenEstrella.generate(5, 15);
                 int coordenadaX = incremento + incremento2;
                 int coordenadaY = incremento + incremento2;
                 int coordenadaZ = incremento + incremento2;
                 int coordRandom = randomEstrella.nextInt(3);
-                if(coordRandom == 0){
+                if (coordRandom == 0) {
                     coordenadaX += randomX.nextInt(1000);
-                }
-                else if(coordRandom == 1){
+                } else if (coordRandom == 1) {
                     coordenadaY += randomY.nextInt(1000);
-                }
-                else if(coordRandom == 2){
+                } else if (coordRandom == 2) {
                     coordenadaZ += randomZ.nextInt(1000);
                 }
-                Estrella estrella = new Estrella(nombreEstrella, coordenadaX, coordenadaY, coordenadaZ, contEstrella+j);
+                Estrella estrella = new Estrella(nombreEstrella, coordenadaX, coordenadaY, coordenadaZ,
+                        contEstrella + j);
                 estrellaRepository.save(estrella);
-                if(randomPlaneta.nextInt(100) < 1){
+                if (randomPlaneta.nextInt(100) < 1) {
                     int numPlanetas = randomPlaneta.nextInt(3);
-                    for(int k=0;k<numPlanetas+1;k++){
-                        String nombrePlaneta = randomGenPlaneta.generate(7,20);
+                    for (int k = 0; k < numPlanetas + 1; k++) {
+                        String nombrePlaneta = randomGenPlaneta.generate(7, 20);
                         Planeta planeta = new Planeta(nombrePlaneta, contPlaneta, estrella);
                         planetaRepository.save(planeta);
                         contPlaneta++;
                     }
                 }
-                incremento2 += 10; 
+                incremento2 += 10;
             }
-            contEstrella = contEstrella + contEstrella*3;
+            contEstrella = contEstrella + contEstrella * 3;
             incremento += 1000;
         }
-       //Conectar Estrellas con Agujeros de Gusano
-       LOG.info("CONECTANDO: Estrellas con Agujeros de Gusano");
-       for(int i=0;i<num_agujeros;i++){
+        // Conectar Estrellas con Agujeros de Gusano
+        LOG.info("CONECTANDO: Estrellas con Agujeros de Gusano");
+        for (int i = 0; i < num_agujeros; i++) {
             AgujeroDeGusano agujero = agujeroDeGusanoRepository.findByAid(i);
-            int eidA =  randomEstrella.nextInt(NUM_ESTRELLAS);
+            int eidA = randomEstrella.nextInt(NUM_ESTRELLAS);
             Estrella estrellaA = estrellaRepository.findByEid(eidA);
             int eidB = 0;
-            do{
+            do {
                 eidB = randomEstrella.nextInt(NUM_ESTRELLAS);
-            }while(eidA == eidB);
+            } while (eidA == eidB);
             Estrella estrellaB = estrellaRepository.findByEid(eidB);
-            AgujeroDeGusanoEstrella agujeroEstrellaA = new AgujeroDeGusanoEstrella("A", agujero,estrellaA);
+            AgujeroDeGusanoEstrella agujeroEstrellaA = new AgujeroDeGusanoEstrella("A", agujero, estrellaA);
             agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaA);
-            AgujeroDeGusanoEstrella agujeroEstrellaB = new AgujeroDeGusanoEstrella("B", agujero,estrellaB);
+            AgujeroDeGusanoEstrella agujeroEstrellaB = new AgujeroDeGusanoEstrella("B", agujero, estrellaB);
             agujeroDeGusanoEstrellaRepository.save(agujeroEstrellaB);
         }
-        //Inserta los productos
+        // Inserta los productos
         LOG.info("INSERTANDO: Productos");
-        for(int i=0;i<NUM_PRODUCTOS;i++){
-            String nombreProducto = randomGenProducto.generate(7,20);
+        for (int i = 0; i < NUM_PRODUCTOS; i++) {
+            String nombreProducto = randomGenProducto.generate(7, 20);
             double metros3 = randomProducto.nextDouble();
             Producto producto = new Producto(nombreProducto, i, 0, metros3);
             productoRepository.save(producto);
         }
 
-        //Conectar Planetas y Productos
-       LOG.info("CONECTANDO: Planetas y Productos");
-       for(int i=0;i<NUM_PRODUCTOS;i++){
-           Producto producto = productoRepository.findByPrid(i);
-            for(int j=0; j<contPlaneta;j++){
+        // Conectar Planetas y Productos
+        LOG.info("CONECTANDO: Planetas y Productos");
+        for (int i = 0; i < NUM_PRODUCTOS; i++) {
+            Producto producto = productoRepository.findByPrid(i);
+            for (int j = 0; j < contPlaneta; j++) {
                 int probabilidadPlaneta = randomPlaneta.nextInt(100);
-                if(probabilidadPlaneta < 70){
+                if (probabilidadPlaneta < 70) {
                     Planeta planeta = planetaRepository.findByPlid(j);
                     int factorDemanda = randomProducto.nextInt(1000000);
                     int stock = randomProducto.nextInt(1000000);
-                    int factorOferta =  randomProducto.nextInt(1000000);
-                    PlanetaProducto planetaProducto = new PlanetaProducto(factorDemanda, stock, factorOferta, planeta,producto);
+                    int factorOferta = randomProducto.nextInt(1000000);
+                    PlanetaProducto planetaProducto = new PlanetaProducto(factorDemanda, stock, factorOferta, planeta,
+                            producto);
                     planetaProductoRepository.save(planetaProducto);
                 }
             }
         }
 
-        //Inserta las naves
+        // Inserta las naves
         LOG.info("INSERTANDO: Naves");
-        for(int i=0;i<NUM_NAVES;i++){
-            String nombreNave = randomGenNave.generate(7,20);
+        for (int i = 0; i < NUM_NAVES; i++) {
+            String nombreNave = randomGenNave.generate(7, 20);
             double carga = 0.0;
             double cargaMaxima = (randomNave.nextDouble() + 1) * 100;
             int velocidad = randomNave.nextInt(100);
-            int idEstrella =  randomEstrella.nextInt(NUM_ESTRELLAS);
+            int idEstrella = randomEstrella.nextInt(NUM_ESTRELLAS);
             Estrella estrella = estrellaRepository.findByEid(idEstrella);
-            
-            if(estrella != null){
-                Nave nave = new Nave(nombreNave, carga, cargaMaxima,velocidad, estrella, i);
+
+            if (estrella != null) {
+                Nave nave = new Nave(nombreNave, carga, cargaMaxima, velocidad, estrella, i);
                 naveRepository.save(nave);
             }
         }
-    
-         //Inserta los Usuarios
-         LOG.info("INSERTANDO: Usuarios");
-         int usuariosXEquipo = NUM_USUARIOS / NUM_EQUIPOS;
-         int contUsuarios = 0;
-         for(int i=0;i<NUM_EQUIPOS;i++){
-            int idNave =  randomProducto.nextInt(NUM_NAVES);
+
+        // Inserta los Usuarios
+        LOG.info("INSERTANDO: Usuarios");
+        int usuariosXEquipo = NUM_USUARIOS / NUM_EQUIPOS;
+        int contUsuarios = 0;
+        for (int i = 0; i < NUM_EQUIPOS; i++) {
+            int idNave = randomProducto.nextInt(NUM_NAVES);
             Nave nave = naveRepository.findByNid(idNave);
-            if(nave != null){
-                for(int j=0; j<usuariosXEquipo; j++){
-                    String username = randomGenUsuario.generate(1,30);
-                    String password = randomGenUsuario.generate(6,20);
-                    String rol = "Piloto";
-                    String correo = randomGenUsuario.generate(10,30);
+            if (nave != null) {
+                for (int j = 0; j < usuariosXEquipo; j++) {
+                    String username = randomGenUsuario.generate(1, 30);
+                    String password = encoder.encode("password");
+                    String rol = "ROLE_PILOTO";
+                    String correo = randomGenUsuario.generate(10, 30);
                     int credito = 1000000;
                     int tiempoDeJuego = 0;
-                    Usuario usuario = new Usuario(contUsuarios,username, password, rol, correo, credito, tiempoDeJuego, nave);
+                    Usuario usuario = new Usuario(contUsuarios, username, password, rol, correo, credito, tiempoDeJuego,
+                            nave);
                     usuarioRepository.save(usuario);
                     contUsuarios++;
                 }
-            } 
-             
-         }
-        
+            }
+
+        }
+
     }
 }

@@ -22,51 +22,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+// @RequestMapping("/planet")
 public class PlanetaController {
-    
+
     @Autowired
     private PlanetaService planetaService;
 
     @PostMapping("/addPlaneta")
-    public Planeta addProducto(@RequestBody Planeta planeta){
+    public Planeta addProducto(@RequestBody Planeta planeta) {
         return planetaService.crearPlaneta(planeta);
     }
 
     @PostMapping("/addPlanetas")
-    public List<Planeta> addPlanetas(@RequestBody List<Planeta> planetas){
+    public List<Planeta> addPlanetas(@RequestBody List<Planeta> planetas) {
         return planetaService.crearPlanetas(planetas);
     }
 
     @GetMapping("/planeta/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Planeta getPlanetaById(@PathVariable Long id){
+    public Planeta getPlanetaById(@PathVariable Long id) {
         return planetaService.getPlanetaById(id);
     }
 
     @GetMapping("/planeta/{id}/productos")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Producto> getProductosPlanetaById(@PathVariable Long id){
+    public List<Producto> getProductosPlanetaById(@PathVariable Long id) {
         return planetaService.getProductosPlanetaById(id);
     }
 
     @GetMapping("/planeta/{id}/planetas-productos")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<PlanetaProducto> getProductosPlanetasById(@PathVariable Long id){
+    public List<PlanetaProducto> getProductosPlanetasById(@PathVariable Long id) {
         return planetaService.getProductosPlanetasById(id);
     }
 
     @GetMapping("/planetas")
-    public List<Planeta> getAllPlanetas(){
+    public List<Planeta> getAllPlanetas() {
         return planetaService.getPlanetas();
     }
 
     @PutMapping("/updatePlaneta")
-    public Planeta updatePlaneta(@RequestBody Planeta planeta){
+    public Planeta updatePlaneta(@RequestBody Planeta planeta) {
         return planetaService.updatePlaneta(planeta);
     }
 
     @DeleteMapping("/planeta/{id}")
-    public String deletePlaneta(@PathVariable Long id){
+    public String deletePlaneta(@PathVariable Long id) {
         return planetaService.deletePlanetaById(id);
     }
 
