@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/shared/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
   loading = false;
 
   constructor(
+    private authService: LoginService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar,
     private _router: Router
@@ -36,6 +38,23 @@ export class LoginComponent implements OnInit {
     } else {
       this.errorLogin();
     }
+  }
+
+  doLogin() {
+    const user = this.form.value.usuario;
+    const password = this.form.value.password;
+    console.log(user + '-' + password);
+    this.authService.login(user, password).subscribe(
+      (data) => {
+        this.loginExitoso(user);
+        console.log('ok');
+        this.loading = true;
+        this._router.navigate(['/dashboard']);
+      },
+      (error) => {
+        console.log(JSON.stringify(error));
+      }
+    );
   }
 
   loginExitoso(usuario: string) {
