@@ -9,13 +9,13 @@
             <h1></h1>
             <mat-form-field class = "ancho" appearance="fill" >
                 <mat-label>Ingrese su username: entrega2</mat-label>
-                <input type="email" name="usuario" formControlName="usuario" required matInput autocomplete="off"> 
+                <input id="inputUsuario" type="email" name="usuario" formControlName="usuario" required matInput autocomplete="off"> 
             </mat-form-field>
             <mat-form-field class = "ancho" appearance="fill">
                 <mat-label>Ingrese su contraseña: password</mat-label>
-                <input name="password" type = "password" formControlName="password" required matInput autocomplete="off">
+                <input id="inputPassword" name="password" type = "password" formControlName="password" required matInput autocomplete="off">
             </mat-form-field>
-            <button  type = "submit" class = "ancho button" mat-raised-button color="primary" (click)="ingresar()">Ingresar</button>
+            <button id="btnIngresar" type = "submit" class = "ancho button" mat-raised-button color="primary" (click)="ingresar()">Ingresar</button>
             <button  class = "ancho button" mat-raised-button color="accent" routerLink = "/registro">Crear cuenta</button>
         </form>
     </div>

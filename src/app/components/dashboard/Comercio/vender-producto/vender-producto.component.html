@@ -21,7 +21,7 @@
                 </div>
                 <div class="divPergamino">
                     <img class="pergamino" src="./assets/imagenes/pergamino.png">
-                    <h5>
+                    <h5 id="h5DatosProducto">
                         <br>Nombre de Producto: {{planetaProducto.producto.nombre}}
                         <br>Stock: {{planetaProducto.stock}}
                         <br>Factor Demanda: {{planetaProducto.factorDemanda}}
@@ -30,9 +30,9 @@
                     <div>
                         <form [formGroup] ="formularioVender">
                             <br>
-                            Cantidad: <input type="text" class="form-control" style="z-index: 2; position: absolute;" formControlName="cantidad">
+                            Cantidad: <input id="inputCantidad" type="text" class="form-control" style="z-index: 2; position: absolute;" formControlName="cantidad">
                             <br>
-                            <button class="btn btn-primary" type="submit" style="z-index: 2; position: absolute;"
+                            <button id="btnVender" class="btn btn-primary" type="submit" style="z-index: 2; position: absolute;"
                             (click)="vender(formularioVender.get('cantidad')!.value)">Vender</button>
                             <br>
                         </form>

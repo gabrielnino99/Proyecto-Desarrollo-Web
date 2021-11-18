@@ -15,9 +15,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navegacion.component.css']
 })
 export class NavegacionComponent implements OnInit {
-  selectedEstrella: Estrella = new Estrella("", 0, 0, 0, 0, 0);
-  nave: Nave = new Nave("", 0, 0, 0, 0, 0, this.selectedEstrella);
-  usuario: Usuario = new Usuario(0,"", "", "", "", 0, 0, 0, this.nave);
+  selectedEstrella: Estrella | null = null;
+  nave: Nave | null = null;
+  usuario: Usuario | null = null;
   estrellas: Estrella[] = [];
 
   constructor(
@@ -58,27 +58,27 @@ export class NavegacionComponent implements OnInit {
   seleccionarEstrella(estrella: Estrella){
     //Calcular distancia en KM
     let distancia = Math.sqrt(
-      Math.pow(estrella.coordenadaX - this.selectedEstrella.coordenadaX,2)
-      + Math.pow(estrella.coordenadaY - this.selectedEstrella.coordenadaY,2)
-      + Math.pow(estrella.coordenadaZ - this.selectedEstrella.coordenadaZ,2)
+      Math.pow(estrella.coordenadaX - this.selectedEstrella?.coordenadaX!,2)
+      + Math.pow(estrella.coordenadaY - this.selectedEstrella?.coordenadaY!,2)
+      + Math.pow(estrella.coordenadaZ - this.selectedEstrella?.coordenadaZ!,2)
       ) * (9.461 * Math.exp(12));
     //Estrella donde esta la nave
     this.selectedEstrella = estrella;
-    this.nave.estrella = this.selectedEstrella;
+    this.nave!.estrella = this.selectedEstrella;
     //Estrellas más cercanas
     this.estrellaService.findEstrellasCercanas(this.selectedEstrella.id).subscribe(
       estrellas => this.estrellas = estrellas
     );
     //Actualizar Nave
     this.naveService.updateNave(new Nave(
-      this.nave.nombre, this.nave.carga, 
-      this.nave.cargaMaxima, this.nave.velocidad, this.nave.nid, this.nave.id, this.nave.estrella
+      this.nave?.nombre!, this.nave?.carga!, 
+      this.nave?.cargaMaxima!, this.nave?.velocidad!, this.nave?.nid!, this.nave?.id!, this.nave?.estrella!
     )).subscribe();
     //Actualizar Usuario con el tiempo medido en dias
-    this.usuario.tiempoDeJuego =  this.usuario.tiempoDeJuego + ((distancia / this.nave.velocidad) * (1 / 86400) );
+    this.usuario!.tiempoDeJuego =  this.usuario!.tiempoDeJuego + ((distancia / this.nave!.velocidad) * (1 / 86400) );
     this.usuarioService.updateUsuario(new Usuario(
-      this.usuario.id, this.usuario.userName, this.usuario.password, this.usuario.rol, this.usuario.email,
-       this.usuario.credito, this.usuario.tiempoDeJuego, this.usuario.id, this.usuario.nave)).subscribe(); 
+      this.usuario?.id!, this.usuario?.userName!, this.usuario?.password!, this.usuario?.rol!, this.usuario?.email!,
+       this.usuario?.credito!, this.usuario?.tiempoDeJuego!, this.usuario?.id!, this.usuario?.nave!)).subscribe(); 
   }
 
 }
