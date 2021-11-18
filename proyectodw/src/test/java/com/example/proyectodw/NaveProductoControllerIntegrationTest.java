@@ -1,10 +1,8 @@
 package com.example.proyectodw;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.test.annotation.DirtiesContext;
@@ -14,9 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.net.URI;
-import java.util.List;
 
 import com.example.proyectodw.DAO.EstrellaRepository;
 import com.example.proyectodw.DAO.NaveRepository;
@@ -84,7 +79,6 @@ public class NaveProductoControllerIntegrationTest {
     void updateNaveProducto(){
         Long id = 4l;
         rest.put("http://localhost:" + port +"/updateNaveProducto", new NaveProducto(id, 2,new Nave(2l,"Voyager", 0.0, 120.0, 300, 1,new Estrella(1l,"Betelgeuse", 1, 1, 1, 1)), new Producto(3l,1,"Rubi", 0, 24.0)), Nave.class);
-        Nave nave = rest.getForObject("http://localhost:" + port +"/nave/" + id, Nave.class);
         Long nid = 2l;
         Long prid = 3l;
         NaveProducto np = rest.getForObject("http://localhost:" + port +"/naveProducto/" + nid + "/" + prid, NaveProducto.class);
