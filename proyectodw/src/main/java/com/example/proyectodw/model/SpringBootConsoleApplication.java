@@ -114,7 +114,7 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
         // Usuario de prueba FrontEnd
         Nave miNave = naveRepository.findByNid(21);
         if (miNave != null) {
-            Usuario usuario = new Usuario(11, "Nova", encoder.encode("1"), "ROLE_CAPITAN", "nova@gmail.com", 1000000, 0,
+            Usuario usuario = new Usuario(11, "Nova", encoder.encode("password"), "ROLE_CAPITAN", "nova@gmail.com", 1000000, 0,
                     miNave);
             usuarioRepository.save(usuario);
         }
