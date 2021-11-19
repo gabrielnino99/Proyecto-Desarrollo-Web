@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -34,37 +36,43 @@ public class UsuarioController {
 
     @PostMapping("/addUsuarios")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Usuario> addUsuarios(@RequestBody List<Usuario> usuarios){
+    public List<Usuario> addUsuarios(@RequestBody List<Usuario> usuarios) {
         return usuarioService.crearUsuarios(usuarios);
     }
 
     @GetMapping("/usuario/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Usuario getUsuarioById(@PathVariable Long id){
+    public Usuario getUsuarioById(@PathVariable Long id) {
         return usuarioService.getUsuarioById(id);
+    }
+
+    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
+    @CrossOrigin(origins = "http://localhost:4200")
+    public Usuario getUsuarioByUsername(@PathVariable String username) {
+        return usuarioService.getUsuarioByUsername(username);
     }
 
     @GetMapping("/usuario/{id}/nave")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Nave getNaveUsuarioById(@PathVariable Long id){
+    public Nave getNaveUsuarioById(@PathVariable Long id) {
         return usuarioService.getNaveUsuarioById(id);
     }
 
     @GetMapping("/usuarios")
     @CrossOrigin(origins = "http://localhost:4200")
-    public List<Usuario> getAllUsuarios(){
+    public List<Usuario> getAllUsuarios() {
         return usuarioService.getUsuarios();
     }
 
     @PutMapping("/updateUsuario")
     @CrossOrigin(origins = "http://localhost:4200")
-    public Usuario updateUsuario(@RequestBody Usuario usuario){
+    public Usuario updateUsuario(@RequestBody Usuario usuario) {
         return usuarioService.updateUsuario(usuario);
     }
 
     @DeleteMapping("/usuario/{id}")
     @CrossOrigin(origins = "http://localhost:4200")
-    public String deleteUsuario(@PathVariable Long id){
+    public String deleteUsuario(@PathVariable Long id) {
         return usuarioService.deleteUsuarioById(id);
     }
 

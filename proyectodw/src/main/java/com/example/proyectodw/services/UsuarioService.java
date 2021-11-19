@@ -1,5 +1,6 @@
 package com.example.proyectodw.services;
 
+import java.lang.StackWalker.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,16 @@ public class UsuarioService {
         return usuarioRepository.findById(id).orElse(null); // Retorna un usuario según su id
     }
 
+    public Usuario getUsuarioByUsername(String username) {
+        Optional<Usuario> usuarioOpcional = usuarioRepository.findByUsername(username);
+        Usuario user = null;
+        if (usuarioOpcional.isPresent()) {
+            user = usuarioOpcional.get();
+        }
+        return user;
+
+    }
+
     public List<Usuario> getUsuarios() {
         return (List<Usuario>) usuarioRepository.findAll(); // Retorna todos los usuarios
     }
@@ -44,7 +55,7 @@ public class UsuarioService {
             usuarioEncontrado.setNave(usuario.getNave());
             usuarioEncontrado.setCredito(usuario.getCredito());
             usuarioEncontrado.setTiempoDeJuego(usuario.getTiempoDeJuego());
-            
+
             usuarioRepository.save(usuarioEncontrado);
         } else {
             return new Usuario();
@@ -52,16 +63,16 @@ public class UsuarioService {
         return usuarioEncontrado;
     }
 
-    public String deleteUsuarioById(Long id){
+    public String deleteUsuarioById(Long id) {
         usuarioRepository.deleteById(id);
         return "Usuario eliminado correctamente";
     }
 
     public Nave getNaveUsuarioById(Long id) {
         Usuario usuario = usuarioRepository.findById(id).orElse(null); // Retorna la nave del usuario según su id
-        if(usuario != null)
+        if (usuario != null)
             return usuario.getNave();
-        else 
+        else
             return null;
     }
 
