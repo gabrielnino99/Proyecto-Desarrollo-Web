@@ -42,7 +42,7 @@ export class LoginService {
     // sessionStorage.setItem('Rol', rol);
   }
 
-  private getAuthData() {
+  getAuthData() {
     const user = sessionStorage.getItem('username');
 
     if (!user) {
@@ -54,7 +54,7 @@ export class LoginService {
     };
   }
 
-  private clearAuthData() {
+  clearAuthData() {
     sessionStorage.removeItem('username');
   }
 
