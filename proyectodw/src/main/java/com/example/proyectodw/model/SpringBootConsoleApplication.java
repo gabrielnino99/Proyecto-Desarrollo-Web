@@ -17,21 +17,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SpringBootConsoleApplication implements CommandLineRunner {
     private static final Logger LOG = LoggerFactory.getLogger(SpringBootConsoleApplication.class);
 
-    // public static final int NUM_ESTRELLAS = 40000;
-    // public static final int NUM_PRODUCTOS = 500;
-    // public static final int NUM_NAVES = 20;
-    // public static final int NUM_USUARIOS = 100;
-    // public static final int NUM_EQUIPOS = 10;
+    public static final int NUM_ESTRELLAS = 40000;
+    public static final int NUM_PRODUCTOS = 500;
+    public static final int NUM_NAVES = 20;
+    public static final int NUM_USUARIOS = 100;
+    public static final int NUM_EQUIPOS = 10;
 
     // DATOS DE PRUEBA
     // Si mil estrellas tardan 3 minutos en subir, estimando matematicamente
     // 40 mil estrellas tardarian 120 minutos, es decir, 2 horas
 
-    public static final int NUM_ESTRELLAS = 500;
-    public static final int NUM_PRODUCTOS = 300;
-    public static final int NUM_NAVES = 20;
-    public static final int NUM_USUARIOS = 100;
-    public static final int NUM_EQUIPOS = 10;
+    // public static final int NUM_ESTRELLAS = 500;
+    // public static final int NUM_PRODUCTOS = 300;
+    // public static final int NUM_NAVES = 20;
+    // public static final int NUM_USUARIOS = 100;
+    // public static final int NUM_EQUIPOS = 10;
 
     @Autowired
     private PasswordEncoder encoder;
